@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE/Admitere Master/CSIE_3/Carti/\"*.pdf \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE/Admitere Master/CSIE_4/Carti/\")",
+      "Bash(cp \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE/Examen Licenta/README.md\" \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE/Admitere Master/CSIE_4/README.md\")",
+      "Bash(rm \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE/Admitere Master/CSIE_4/README.md\")",
+      "Bash(rm \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE/Admitere Master/CSIE_4/Carti/ocr_Baze de date Oracle. Limbajul SQL - Lungu I_.pdf\")",
+      "Bash(rm \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE/Admitere Master/CSIE_4/Carti/ocr_Baze de date. Limbajul PL SQL - Bara et al.pdf\")",
+      "Bash(rm \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE/Admitere Master/CSIE_4/Carti/ocr_Programare orientata obiect in limbajul C++ - Smeureanu si Dardala.pdf\")",
+      "Bash(rm \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE/Admitere Master/CSIE_4/Carti/ocr_Programarea in limbajul C C++ - Smeureanu si Dardala.pdf\")"
+    ]
+  }
+}
