@@ -1545,211 +1545,861 @@ O **macrodefinție** = `#define` cu parametri; se expandează textual la locul a
 # 14. PROGRAMARE ORIENTATĂ OBIECT (C++)
 **Sursă: [4] Smeureanu, Dârdală — Programarea orientată obiect în C++, pp. 11–133**
 
-## 14.1 Abstractizarea datelor. Conceptul de clasă (pp. 11–51)
+---
 
-**Clasa** = tip de date care încapsulează **date** (atribute) și **funcții** (metode) care operează asupra lor. Implementează un concept abstract.
+## 14.1 Conceptele fundamentale ale POO
 
-**Avantaje:**
-- Specializarea prelucrărilor
-- Localizarea facilă a erorilor
-- Surprinderea tipologiei relațiilor dintre entități
-- Gestionarea accesului prin "ascunderea" datelor
-- Moduri de comunicare între entități
+**Programarea orientată obiect (POO)** este o paradigmă de programare care organizează codul în jurul **obiectelor** — entități care încapsulează împreună date (stare) și comportament (operații).
 
-### Definirea unei clase:
+Cele patru piloni ai POO sunt:
+- **Încapsularea** — ascunderea detaliilor interne; accesul controlat prin interfață publică
+- **Moștenirea** — o clasă preia caracteristicile alteia și le poate extinde
+- **Polimorfismul** — aceeași interfață, comportamente diferite în funcție de tipul real al obiectului
+- **Abstractizarea** — modelarea conceptelor din lumea reală ignorând detaliile irelevante
+
+---
+
+## 14.2 Clasa și obiectul (pp. 11–20)
+
+### Ce este o clasă?
+
+**Clasa** este un tip de date definit de utilizator care înglobează împreună **date membre** (atribute) și **funcții membre** (metode/operații). Ea implementează un concept abstract și indică natura datelor ce-l compun, precum și metodele ce-i pot fi aplicate.
+
+Din punct de vedere sintactic, o clasă se definește astfel:
 ```cpp
-class Persoana {
-private:
-  int varsta;        // acces doar din interiorul clasei
-protected:
-  float salariu;     // acces din clasa și din clasele derivate
+class NumeClasa {
+  // date și funcții membre
+};  // ; obligatoriu!
+```
+
+**Avantajele folosirii claselor:**
+- Specializarea prelucrărilor și adaptarea lor de la un caz la altul
+- Localizarea facilă a erorilor (datele și operațiile care le modifică sunt în același loc)
+- Surprinderea tipologiei relațiilor dintre entități
+- Gestionarea accesului prin "ascunderea" datelor (data hiding)
+- Degrevarea programatorului de detalii tehnice; interfața este orientată spre client
+
+### Ce este un obiect?
+
+Un **obiect** = o instanțiere concretă a unei clase. Dacă clasa este "rețeta", obiectul este "prăjitura". Fiecare obiect deține propriul set de date (valori), dar **partajează codul** funcțiilor membre cu toate celelalte obiecte ale aceleiași clase. Compilatorul ține un singur exemplar din codul funcțiilor membre, particularizat la apel prin pointerul `this`.
+
+```cpp
+class persoana {
+  int varsta;           // dată membră privată
+  float salariu;        // dată membră privată
 public:
-  char nume[20];     // acces oriunde
-  
-  // Constructor
-  Persoana(char *n = "Anonim", int v = 0, float s = 0.0) {
+  char nume[20];        // dată membră publică
+  persoana() { strcpy(nume, "Anonim"); varsta = 0; salariu = 0; }
+  persoana(char *n, int v, float s) {
     strcpy(nume, n); varsta = v; salariu = s;
   }
-  
-  // Destructor
-  ~Persoana() { }
-  
-  // Metode
-  int spuneVarsta() { return varsta; }  // funcție inline
-  char* spuneNume();                    // declarată, definită afară
+  char* spune_nume() { return nume; }
+  int spune_varsta() { return varsta; }
 };
 
-// Definire metodă în afara clasei:
-char* Persoana::spuneNume() {
-  return nume;
+// Creare obiecte (instanțiere):
+persoana p1;                         // apelează constructorul implicit
+persoana p2("Ionescu Ion", 30, 2500.0); // apelează constructorul explicit
+cout << p2.spune_nume();             // apel metodă: "Ionescu Ion"
+```
+
+---
+
+## 14.3 Specificatorii de acces (pp. 13–15)
+
+Funcțiile și datele unei clase pot fi grupate în **trei domenii de acces**:
+
+| Specificator | Accesibil din | Utilizare tipică |
+|---|---|---|
+| `private` | Doar din interiorul clasei | Date membre; implementare internă |
+| `protected` | Din clasă + clase derivate | Date accesibile în ierarhii |
+| `public` | Oriunde | Interfața clasei (metode publice) |
+
+```cpp
+class persoana {
+private:
+  int varsta;       // accesibil doar din persoana
+protected:
+  float salariu;    // accesibil din persoana și clasele derivate
+public:
+  char nume[20];    // accesibil oriunde
+  int spune_varsta() { return varsta; }  // metodă publică
+};
+```
+
+**Reguli importante:**
+- Dacă nu se specifică niciun specificator, membrii sunt implicit `private` (pentru `class`) sau `public` (pentru `struct`)
+- Domeniile de acces pot fi repetate și intercalate în orice ordine în corpul clasei
+- `protected` este mai slab decât `private` (mai puțin restrictiv), dar mai restrictiv decât `public`
+- Prin derivare, membrii `private` ai clasei de bază sunt **întotdeauna inaccesibili** în clasa derivată, indiferent de tipul derivării
+
+**Diferența `class` vs. `struct`:**
+```cpp
+class A { int x; };        // x este private implicit
+struct B { int x; };       // x este public implicit
+// struct B { ... } este aproape echivalent cu class B { public: ... }
+```
+
+---
+
+## 14.4 Separarea interfeței de implementare
+
+În practică, **declararea clasei** (interfața) se pune într-un fișier header (`.h`), iar **implementarea** (codul metodelor) într-un fișier sursă (`.cpp`):
+
+```cpp
+// persoana.h — interfața (header)
+class persoana {
+  int varsta;
+  float salariu;
+public:
+  char nume[20];
+  persoana(char *n = "Anonim", int v = 0, float s = 0.0);
+  char* spune_nume();
+  int spune_varsta() const;  // inline: definit direct în clasă
+};
+
+// persoana.cpp — implementarea
+#include "persoana.h"
+persoana::persoana(char *n, int v, float s) {
+  strcpy(nume, n); varsta = v; salariu = s;
+}
+char* persoana::spune_nume() { return nume; }
+```
+
+Operatorul `::` (rezoluție de domeniu) leagă o metodă de clasa căreia aparține. La apel, metoda este calificată prin obiect: `p1.spune_varsta()` sau prin pointer: `pp->spune_varsta()`.
+
+**Programatorii-clienți** nu au acces la detaliile implementării, ci doar la interfața publică. Proprietarul clasei este obligat să mențină stabilitatea interfeței — modificările implementării nu trebuie să afecteze codul client.
+
+---
+
+## 14.5 Funcțiile membre — categorii și tipuri (pp. 15–17)
+
+Funcțiile membre ale unei clase se împart în patru categorii:
+
+| Categorie | Rol |
+|---|---|
+| **Constructori** | Inițializează obiectul la creare |
+| **Destructorul** | Curăță resursele la distrugerea obiectului |
+| **Funcții de acces** | Mediază legătura obiectului cu exteriorul (get/set) |
+| **Metode** | Introduc operațiile și prelucrările specifice |
+
+### Funcții inline
+Funcțiile definite **direct în corpul clasei** sunt implicit `inline` — compilatorul înlocuiește apelul cu codul funcției (fără overhead de apel pe stivă). Potrivite pentru funcții scurte și stabile.
+
+```cpp
+class persoana {
+  int varsta;
+public:
+  int spune_varsta() { return varsta; }  // implicit inline
+};
+// Sau explicit inline, definită în afara clasei:
+inline int persoana::spune_varsta() { return varsta; }
+```
+
+### Funcțiile de acces (getters/setters)
+Teoria POO recomandă trecerea datelor în `private`, cu acces controlat prin funcții specializate cu prefix `get_xxx()` (returnare) sau `set_xxx()` (modificare):
+
+```cpp
+class persoana {
+  int varsta;
+public:
+  int get_varsta() const { return varsta; }    // read-only
+  void set_varsta(int v) { varsta = v; }       // write
+};
+```
+
+**De ce funcții de acces?** — Proprietarul clasei poate schimba implementarea internă oricând, fără a afecta codul client. De exemplu, `get_salariu()` poate returna în viitor un salariu mediu în loc de cel real, fără ca programele care îl apelează să știe.
+
+### Funcții membre `const`
+O funcție membră declarată `const` garantează că **nu modifică** obiectul. Poate fi apelată și pe obiecte constante:
+
+```cpp
+int spune_varsta() const { return varsta; }
+// Echivalent cu: pointerul this devine const persoana*
+// Nu se poate aplica const pe constructor sau destructor
+```
+
+---
+
+## 14.6 Constructori (pp. 17–25)
+
+**Constructorul** este o funcție membră specială cu același nume ca și clasa, **fără tip de retur**, responsabilă cu inițializarea obiectului la creare. Este apelat **automat** la definirea unui obiect.
+
+**De ce constructori și nu o metodă init() obișnuită?**
+- Datele sunt de obicei `private` — nu pot fi inițializate direct din exterior
+- Complexitatea structurii (secțiuni private/public intercalate) face dificilă inițializarea directă ca la structuri C
+- Constructorul **degrevează** programatorul de a reține și apela manual metode de inițializare
+
+### Constructorul implicit (fără parametri)
+```cpp
+class persoana {
+  int varsta;
+public:
+  persoana() {                  // constructor implicit
+    strcpy(nume, "Anonim");
+    varsta = 0;
+    salariu = 0.0;
+  }
+  char nume[20];
+  float salariu;
+};
+persoana p1;  // apelează constructorul implicit automat
+```
+
+Dacă nu se definește **niciun constructor**, compilatorul generează automat unul implicit care **nu face nimic**. Dacă se definește orice constructor explicit, constructorul implicit generat automat **dispare** și trebuie definit explicit dacă este nevoie.
+
+### Constructorul explicit (cu parametri)
+```cpp
+persoana(char *n, int v, float s) {
+  strcpy(nume, n); varsta = v; salariu = s;
+}
+// Apel:
+persoana p2("Gigi", 45, 8999.0);
+```
+
+### Supraîncărcarea constructorilor
+O clasă poate avea **mai mulți constructori**, selectați în funcție de parametrii de apel:
+```cpp
+persoana p1;                           // implicit
+persoana p2("Gigi", 45, 8999.0);      // explicit cu 3 parametri
+```
+
+### Constructorul cu parametri impliciți (valori default)
+Combină constructorul implicit cu cel explicit într-unul singur:
+```cpp
+persoana(char *n = "Anonim", int v = 0, float s = 0.0) : varsta(v), salariu(s) {
+  strcpy(nume, n);
+}
+// Poate fi apelat ca:
+persoana p1;                   // "Anonim", 0, 0.0
+persoana p2("Ion", 30, 2500); // "Ion", 30, 2500.0
+```
+
+### Lista de inițializatori (member initializer list)
+Sintaxa `: membru(valoare)` din constructori inițializează membrii **înainte** de execuția corpului constructorului. **Obligatorie** pentru:
+- Membri declarați `const` (nu pot fi asignați, doar inițializați)
+- Membri de tip referință
+- Apelul explicit al constructorului clasei de bază (la derivare)
+- Membri fără constructor implicit (clase încuibate)
+
+```cpp
+class muncitor {
+  const double tarif;   // const — OBLIGATORIU în lista de inițializatori
+  int nr_piese;
+public:
+  muncitor(double t, int np) : tarif(t), nr_piese(np) { }
+  //                           ^^^^^^^^ obligatoriu pentru const
+};
+```
+
+### Constante de clasă
+O constantă a tipului clasă se construiește apelând constructorul explicit:
+```cpp
+const persoana seful("Anghel Victor", 49, 12500.0);
+persoana p1 = seful;  // copie din constantă
+```
+
+### Constructori în domeniul `private`
+Constructorii pot fi declarați `private` — în acest caz, obiectele pot fi create **numai din interiorul clasei** (de funcțiile membre). Utilizare: obiecte temporare interne, pattern Singleton, fabrici de obiecte.
+
+---
+
+## 14.7 Constructorul de copiere (pp. 21–26)
+
+**Constructorul de copiere** este un constructor special care inițializează un obiect nou pornind de la **un obiect existent** de același tip. Se recunoaște prin parametrul de tip referință la aceeași clasă:
+
+```cpp
+class cls {
+public:
+  cls(cls& c) { /* definire */ }  // constructor de copiere
+};
+```
+
+**Este invocat automat la:**
+- Inițializarea unui obiect din altul: `persoana p2 = p1;`
+- Transferul unui obiect **prin valoare** în/din funcții: `f(p1);`
+- Returnarea unui obiect **prin valoare** din funcție: `return p;`
+
+**Constructorul implicit de copiere** (generat automat de compilator) face **copiere bit cu bit** (shallow copy) — copiază câmpurile membre direct, inclusiv pointerii.
+
+### Problema claselor cu pointeri (copiere superficială vs. profundă)
+
+Dacă clasa are un câmp `char *pnume` alocat dinamic, constructorul implicit de copiere **copiază doar adresa**, nu și zona pointată. Cele două obiecte vor partaja aceeași zonă de memorie:
+
+```cpp
+// Fără constructor de copiere explicit:
+persoana p1("Vasilache", 45);
+persoana p2 = p1;         // p2.pnume == p1.pnume (aceeași adresă!)
+strcpy(p2.pnume, "Gigi"); // modifică și p1.pnume !!!
+// Afișare: ambele obiecte arată "Gigi" ← anomalie!
+```
+
+**Soluția:** constructor de copiere explicit care alocă zonă nouă (deep copy):
+```cpp
+persoana(persoana& pers) : varsta(pers.varsta) {
+  pnume = new char[strlen(pers.pnume) + 1];
+  strcpy(pnume, pers.pnume);  // copiere conținut, nu adresă
 }
 ```
 
-### Specificatori de acces:
-- **`private`** — accesibil doar din interiorul clasei (implicit pentru `class`)
-- **`protected`** — accesibil din clasă și din clasele derivate (moștenire)
-- **`public`** — accesibil oriunde
+### Regula celor patru (pentru clase cu pointeri)
+C�nd o clasă are membri pointeri spre memorie dinamică, programatorul **trebuie** să furnizeze obligatoriu:
+1. **Constructor de clasă** — alocă zona dinamică și o inițializează
+2. **Constructor de copiere** — alocă zonă nouă și copiază conținutul
+3. **Destructor** — eliberează zona dinamică (`delete`)
+4. **Operator `=` (atribuire)** — dezalocă zona veche, alocă una nouă, copiază
 
-**Diferența `class` vs. `struct`:** implicit `private` (class) vs. implicit `public` (struct).
+---
 
-### Obiectul = instanța clasei:
+## 14.8 Destructorul (pp. 22–23)
+
+**Destructorul** este complementul constructorului — este apelat **automat** la ieșirea obiectului din scope sau la `delete`. Se declară cu `~` înaintea numelui clasei, fără parametri și fără tip de retur:
+
 ```cpp
-Persoana p1("Ion", 30, 2500.0);  // creare obiect (apelul constructorului)
-p1.spuneVarsta();                // apel metodă
-Persoana *pp = &p1;              // pointer la obiect
-pp->spuneVarsta();
-```
-
-### Constructori:
-- Se apelează automat la crearea obiectului
-- Pot fi supraîncărcați (mai mulți constructori cu parametri diferiți)
-- **Constructor implicit** — fără parametri sau cu toți parametri impliciți
-- **Constructor de copiere** — preia un obiect de același tip: `Persoana(const Persoana& p);`
-
-### Destructori:
-- Se apelează automat la distrugerea obiectului
-- Un singur destructor, fără parametri: `~Persoana()`
-- Eliberează resursele alocate dinamic
-
-### Funcții `inline`:
-Funcțiile definite direct în clasa = inline. Substituție textuală la locul apelului (fără overhead).
-
-### Date și funcții membre statice:
-```cpp
-class Contor {
+class persoana {
+  char *pnume;
 public:
-  static int nr_obiecte;       // dată statică: comună tuturor instanțelor
-  static int getNrObiecte() { return nr_obiecte; }  // funcție statică
+  persoana(char *n) {
+    pnume = new char[strlen(n) + 1];
+    strcpy(pnume, n);
+  }
+  ~persoana() {         // destructor
+    delete[] pnume;     // eliberare memorie dinamică
+  }
 };
-int Contor::nr_obiecte = 0;    // definiție obligatorie în afara clasei
-// Apel: Contor::getNrObiecte() sau contor_obj.getNrObiecte()
+// La ieșirea din bloc, destructorul e apelat automat:
+{
+  persoana p("Ion");
+}  // ← ~persoana() apelat automat aici
 ```
 
-## 14.2 Supraîncărcarea operatorilor și funcțiilor (pp. 52–85)
+**Caracteristici esențiale:**
+- O clasă are **un singur destructor** (nu poate fi supraîncărcat)
+- Nu are parametri și nu returnează nimic
+- Dacă nu e definit explicit, compilatorul generează unul vid (automat, în `public`)
+- **Nu poate fi moștenit** de clase derivate, dar poate fi apelat de ele
+- Este apelat în **ordine inversă** față de constructori (ultimul creat = primul distrus)
+- Dacă constructorii fac alocări dinamice, destructorul **trebuie** să le elibereze explicit
 
-### Supraîncărcarea funcțiilor (overloading):
-Aceeași denumire, parametri diferiți (tip și/sau număr). Compilatorul alege versiunea potrivită.
+---
+
+## 14.9 Pointerul `this` (pp. 26–27)
+
+`this` este un pointer implicit prezent în **orice funcție membră nestatică** a clasei. El conține **adresa obiectului** pentru care se apelează funcția.
 
 ```cpp
-int suma(int a, int b) { return a + b; }
-double suma(double a, double b) { return a + b; }
-int suma(int a, int b, int c) { return a + b + c; }
+class persoana {
+  int varsta;
+public:
+  void set_varsta(int varsta) {
+    this->varsta = varsta;  // this->varsta = membrul clasei
+    // varsta (fără this) = parametrul funcției
+  }
+  void afisare_adresa() {
+    cout << "Adresa obiectului: " << this;
+  }
+  persoana& incrementeaza() {
+    varsta++;
+    return *this;  // returnează referință la obiectul curent → permite înlănțuire
+  }
+};
 ```
 
-**Nu** se poate supraîncărca doar prin tipul de retur.
+**Utilizări practice:**
+- Diferențierea dintre **membrul clasei** și **parametrul cu același nume**
+- Returnarea **obiectului curent** din funcții membre (pentru înlănțuirea apelurilor)
+- Transmiterea adresei obiectului curent altor funcții
 
-### Supraîncărcarea operatorilor:
-Permite utilizarea operatorilor standard (`+`, `-`, `*`, `[]`, `<<`, etc.) cu tipuri definite de utilizator.
+Toate referirile la datele membre din funcțiile nestatice se fac implicit prin `this` (compilatorul adaugă `this->` în mod transparent). `this` este primul parametru de apel generat de compilator, desi nu apare explicit în sursa C++.
 
+---
+
+## 14.10 Date și funcții membre statice (pp. 33–35)
+
+### Date membre statice
+
+O **dată membră statică** nu aparține unui obiect individual — există **un singur exemplar** pentru toată clasa, indiferent câte obiecte există. Nu se alocă prin constructor.
+
+```cpp
+class persoana {
+  static int total_persoane;  // declarare în clasă (nu alocare!)
+  char sex;
+public:
+  persoana(char sx = 'B') { total_persoane++; sex = sx; }
+  ~persoana() { total_persoane--; }
+  static int spune_total() { return total_persoane; }
+};
+// Definiție OBLIGATORIE în afara clasei (alocarea efectivă):
+int persoana::total_persoane = 0;
+
+// Acces fără a specifica un obiect:
+cout << persoana::spune_total();  // sau: p1.spune_total()
+```
+
+**Inițializarea** se face la definiția externă; specificatorul `static` **nu** se repetă la definiție (ar avea altă semnificație în afara clasei).
+
+### Funcții membre statice
+
+O **funcție membră statică** nu aparține unui obiect concret — **nu are pointerul `this`**. Poate fi apelată fără a crea un obiect:
+
+```cpp
+static void numara_b(persoana *pp) {
+  if (pp->sex == 'B') total_b++;  // accesează direct data statică
+  // pp->varsta ← imposibil fără this; trebuie transmis explicit ca parametru
+}
+// Apel:
+persoana::numara_b(&p[0]);  // fără obiect
+p[0].numara_b(&p[1]);       // sau prin obiect (referința p[0] nu e folosită)
+```
+
+**Limitări ale funcțiilor statice:**
+- Nu pot accesa direct date **nestatice** ale clasei (nu au `this`)
+- Nu pot fi declarate `const` sau `virtual`
+- Datele nestatice trebuie primite explicit ca parametri
+
+---
+
+## 14.11 Transferul obiectelor în/din funcții (pp. 35–37)
+
+Obiectele pot fi transferate **prin valoare**, **prin referință** sau **prin adresă (pointer)**:
+
+### Transfer prin valoare — creează copie
+```cpp
+void f(persoana p) { p.set_varsta(99); }  // se lucrează pe copie
+persoana p1("Ion", 30, 2500);
+f(p1);  // constructorul de copiere e apelat! p1 rămâne neschimbat
+```
+**La transfer prin valoare:** constructorul de copiere este apelat pentru a crea obiectul temporar pe stivă. La ieșirea din funcție, destructorul este apelat pe copie.
+
+### Transfer prin referință — fără copie, modifică originalul
+```cpp
+void f(persoana& p) { p.set_varsta(99); }  // modifică originalul
+f(p1);  // constructorul de copiere NU e apelat; p1 se modifică
+```
+
+### Transfer prin referință `const` — fără copie, nu modifică
+```cpp
+void f(const persoana& p) { cout << p.spune_varsta(); }
+// Eficient (fără copie) și sigur (nu poate modifica)
+```
+
+### Transfer prin adresă (pointer)
+```cpp
+void f(persoana *pp) { pp->set_varsta(99); }
+f(&p1);  // p1 se modifică; fără copie pe stivă
+```
+
+**Atenție la conversii:** dacă la transfer prin referință compilatorul face o conversie de tip pentru adaptare la prototip, se creează un obiect **temporar** — modificările din funcție **nu** se propagă la original!
+
+---
+
+## 14.12 Supraîncărcarea funcțiilor — Overloading (pp. 52–54)
+
+**Supraîncărcarea** (overloading) = posibilitatea de a defini mai multe funcții cu **același nume** dar cu **parametri diferiți** (număr și/sau tip). Compilatorul selectează versiunea potrivită din **signatura funcției** (numele + lista de parametri).
+
+```cpp
+void suma(int a, int b)    { cout << a + b; }
+void suma(double a, double b) { cout << a + b; }
+void suma(int a, int b, int c) { cout << a + b + c; }
+
+suma(3, 4);         // → suma(int, int)
+suma(3.14, 2.71);   // → suma(double, double)
+suma(1, 2, 3);      // → suma(int, int, int)
+```
+
+**Valoarea returnată NU contează** la selectarea versiunii — nu se poate supraîncărca doar prin tipul de retur.
+
+### Etapele selectării funcției de apelat:
+1. **Faza 1** — potrivire exactă (fără nicio conversie)
+2. **Faza 2** — conversii nedegradante (fără pierderi): `char`/`short` → `int`, `float` → `double`
+3. **Faza 3** — conversii degradante (cu pierderi): `int` → `double`, `double` → `int`, etc.
+4. **Faza 4** — conversii definite de utilizator (prin operatorul `cast` supraîncărcat)
+
+Dacă în oricare fază mai multe versiuni sunt potrivite simultan → **eroare de ambiguitate**. Dacă după toate fazele nu se găsește nicio versiune → eroare de linkeditare.
+
+### Funcțiile membre respectă aceleași reguli de supraîncărcare. Atenție: funcțiile cu același nume din **clase diferite** nu sunt în competiție (clasa face parte din identitatea metodei).
+
+---
+
+## 14.13 Supraîncărcarea operatorilor (pp. 54–85)
+
+**Supraîncărcarea operatorilor** permite utilizarea operatorilor standard (`+`, `-`, `*`, `[]`, `<<`, etc.) cu tipuri definite de utilizator, oferind o sintaxă naturală și intuitivă.
+
+Operatorul `a + b` este interpretat ca apelul `a.operator+(b)` — funcție membră numită `operator+`, aparținând obiectului `a`, primind `b` ca parametru.
+
+### Sintaxa supraîncărcării
+
+**Ca funcție membră a clasei:**
 ```cpp
 class Complex {
-public:
   double re, im;
-  Complex(double r=0, double i=0) : re(r), im(i) {}
+public:
+  Complex(double r = 0, double i = 0) : re(r), im(i) {}
   
-  // Supraîncărcare ca metodă:
+  // Operator binar ca metodă (this = operandul stâng):
   Complex operator+(const Complex& c) const {
     return Complex(re + c.re, im + c.im);
   }
-  
-  // Supraîncărcare ca funcție externă (prietenă):
-  friend ostream& operator<<(ostream& os, const Complex& c);
+  // Operator unar ca metodă:
+  Complex operator-() const { return Complex(-re, -im); }
+  // Operator de atribuire compusă (returnează referință pentru înlănțuire):
+  Complex& operator+=(const Complex& c) {
+    re += c.re; im += c.im; return *this;
+  }
+  // Operator de indexare:
+  double& operator[](int i) { return i == 0 ? re : im; }
 };
+```
 
-ostream& operator<<(ostream& os, const Complex& c) {
-  os << c.re << "+" << c.im << "i";
-  return os;
+**Ca funcție externă (prietenă — pentru acces la private):**
+```cpp
+// << și >> pentru I/O TREBUIE să fie funcții externe:
+friend ostream& operator<<(ostream& os, const Complex& c) {
+  os << "(" << c.re << "+" << c.im << "i)";
+  return os;  // returnare referință → permite cout << c1 << c2
+}
+friend istream& operator>>(istream& is, Complex& c) {
+  is >> c.re >> c.im; return is;
+}
+// Operator binar cu primul operand de alt tip:
+friend Complex operator*(double scalar, const Complex& c) {
+  return Complex(scalar * c.re, scalar * c.im);
 }
 ```
 
-**Operatori supraîncărcabili:** `+`, `-`, `*`, `/`, `%`, `++`, `--`, `=`, `==`, `!=`, `<`, `>`, `[]`, `()`, `<<`, `>>`, etc.
+### Operatori `++` și `--` (prefix vs. postfix)
+```cpp
+// Prefix (++c): returnează obiectul incrementat
+Complex& operator++() { re++; return *this; }
+// Postfix (c++): parametru dummy int, returnează copia veche
+Complex operator++(int) {
+  Complex temp = *this;  // salvare valoare curentă
+  re++;
+  return temp;           // returnare valoare dinainte de incrementare
+}
+```
 
-**Operatori nesupraîncărcabili:** `::`, `.`, `.*`, `?:`, `sizeof`.
+### Operatorul de atribuire `=`
+```cpp
+Complex& operator=(const Complex& c) {
+  if (this != &c) {      // protecție la autoatribuire: a = a
+    re = c.re; im = c.im;
+  }
+  return *this;
+}
+```
+**Atenție la clase cu pointeri:** operatorul `=` generat automat face copiere superficială (shallow copy) — trebuie redefinit explicit pentru deep copy, similar constructorului de copiere.
 
-**Regulă:** cel puțin un operand trebuie să fie de tip clasă; nu se poate schimba precedența sau aritatea.
+### Operatorul de conversie (`cast`)
+```cpp
+class Rational {
+  int num, den;
+public:
+  operator double() const { return (double)num / den; }  // conversie la double
+};
+Rational r(1, 3);
+double d = r;   // apelează operator double() → 0.333...
+```
 
-## 14.3 Polimorfism (pp. 52–85)
+### Restricții la supraîncărcarea operatorilor
+- **Precedența și asociativitatea** nu pot fi schimbate
+- **Aritatea** (numărul de operanzi) nu poate fi schimbată, cu excepția: `()` poate primi oricâți parametri; `+`, `-`, `&`, `*` pot fi unari sau binari
+- Cel puțin **un operand** trebuie să fie de tip clasă (nu se pot redefini operatorii pentru tipuri de bază)
+- **Nu se pot crea operatori noi** (ex: `**` pentru putere nu există)
 
-**Polimorfismul** = capacitatea de a trata obiecte de tipuri diferite printr-o interfață uniformă.
+**Operatori care POT fi supraîncărcați:**
+`+`, `-`, `*`, `/`, `%`, `^`, `&`, `|`, `~`, `!`, `=`, `<`, `>`, `+=`, `-=`, `*=`, `/=`, `%=`, `^=`, `&=`, `|=`, `<<`, `>>`, `<<=`, `>>=`, `==`, `!=`, `<=`, `>=`, `&&`, `||`, `++`, `--`, `,`, `->*`, `->`, `()`, `[]`, `new`, `delete`
 
-**Tipuri de polimorfism:**
-- **Compilare (static):** supraîncărcarea funcțiilor și operatorilor
-- **Execuție (dinamic):** funcții virtuale + moștenire
+**Operatori care NU pot fi supraîncărcați:**
+`::` (rezoluție domeniu), `.` (acces membru), `.*` (pointer la membru), `?:` (condițional ternar), `sizeof`
 
-## 14.4 Clase derivate. Moștenire. Funcții virtuale (pp. 108–133)
+**Operatori care trebuie să fie funcții membre** (nu funcții externe):
+`=`, `[]`, `()`, `->`
 
-### Moștenirea (inheritance):
-Crearea unei **clase derivate** (subclasă) dintr-o **clasă de bază** (superclasă). Clasa derivată moștenește atributele și metodele clasei de bază.
+---
+
+## 14.14 Polimorfismul (pp. 52–85, 108–133)
+
+**Polimorfismul** = capacitatea de a trata obiecte de tipuri diferite **printr-o interfață uniformă**, fiecare tip răspunzând în modul său propriu.
+
+### Polimorfism de compilare (static — early binding)
+Rezolvat la **compilare** prin:
+- Supraîncărcarea funcțiilor (overloading)
+- Supraîncărcarea operatorilor
+
+Compilatorul știe la compilare ce funcție să apeleze, bazându-se pe tipul parametrilor.
+
+### Polimorfism de execuție (dinamic — late binding)
+Rezolvat la **execuție** prin funcții virtuale + moștenire + pointeri la clasa de bază. Decizia ce funcție se apelează se ia în **momentul rulării**, în funcție de tipul real al obiectului.
+
+---
+
+## 14.15 Clase derivate și moștenire (pp. 108–115)
+
+**Moștenirea** (derivarea) permite crearea de noi clase care preiau caracteristicile unor clase existente, **reutilizând** codul și **eliminând redundanța**.
+
+```cpp
+class D : public B {   // D derivată public din B
+  // date și funcții specifice clasei D
+};
+```
+
+### Tipuri de derivare și efectele lor asupra accesului
+
+| Tip derivare | `public` din B devine | `protected` din B devine | `private` din B |
+|---|---|---|---|
+| `: public` | `public` în D | `protected` în D | inaccesibil în D |
+| `: protected` | `protected` în D | `protected` în D | inaccesibil în D |
+| `: private` | `private` în D | `private` în D | inaccesibil în D |
+
+**Regula fundamentală:** membrii `private` ai clasei de bază sunt **întotdeauna inaccesibili** în clasa derivată, indiferent de tipul derivării. Dacă nu se specifică tipul derivării, el este implicit **`private`**.
+
+### Exemplu concret de derivare
+```cpp
+class persoana {
+  int varsta;
+public:
+  char nume[20];
+  persoana(char *n = "Anonim", int v = 0) : varsta(v) {
+    strcpy(nume, n);
+  }
+  int spune_varsta() { return varsta; }
+};
+
+class student : public persoana {
+  int matricol;
+public:
+  // Constructorul derivatei apelează constructorul bazei prin lista de inițializatori:
+  student(char *nm = "FICTIV", int vs = 0, int m = 0)
+    : persoana(nm, vs), matricol(m) {}
+  int spune_matricol() { return matricol; }
+};
+
+student s1;                           // "FICTIV", 0, 0
+student s2("Stan Emil", 25, 110);    // "Stan Emil", 25, 110
+cout << s2.spune_varsta();           // metodă moștenită din persoana → 25
+cout << s2.spune_matricol();         // metodă proprie → 110
+cout << s2.nume;                     // câmp moștenit public → "Stan Emil"
+```
+
+### Conlucrarea constructorilor în moștenire
+- **La creare:** mai întâi constructorul **bazei**, apoi al **derivatei**
+- **La distrugere:** mai întâi destructorul **derivatei**, apoi al **bazei**
+- Constructorul derivatei este responsabil cu inițializarea corectă **și** a datelor moștenite
+- Dacă constructorul bazei nu e apelat explicit, se apelează **constructorul implicit** al bazei
+
+```cpp
+student(char *nm, int vs, int m) : persoana(nm, vs), matricol(m) {
+  // persoana(nm, vs) apelat primul
+  // apoi matricol = m
+  // corpul constructorului student (poate fi vid)
+}
+```
+
+### Conversia derivat → baza (upcasting)
+Un pointer sau referință la clasa de baza poate conține adresa unui obiect derivat. Invers (downcasting) necesită cast explicit:
+```cpp
+persoana *pp = &s2;  // valid: student IS-A persoana
+student *ps = (student*)pp;  // downcast explicit — periculos fără verificare!
+```
+
+### Publicizarea membrilor (la derivare privată)
+Dacă s-a folosit derivare privată, dar se dorește ca unii membri din baza să rămână publici în derivată:
+```cpp
+class D : private B {
+public:
+  B::metoda_publica;  // re-publicizare; nu se dă tipul, doar rezoluția
+};
+```
+
+---
+
+## 14.16 Funcții virtuale (pp. 116–123)
+
+### Legarea statică vs. dinamică
+
+**Legare statică (early binding):** fără `virtual`, compilatorul decide la compilare ce funcție se apelează, bazându-se pe **tipul pointerului/referinței** — nu pe tipul real al obiectului:
+
+```cpp
+persoana *pp = new student("Ion", 22, 100);
+pp->afisare();  // FĂRĂ virtual → apelează persoana::afisare()
+                // (chiar dacă obiectul real e student!)
+```
+
+**Legare dinamică (late binding):** cu `virtual`, decizia se ia la **execuție**, în funcție de **tipul real** al obiectului:
 
 ```cpp
 class Animal {
-protected:
-  char nume[30];
 public:
-  Animal(const char* n) { strcpy(nume, n); }
-  virtual void sunet() { cout << "Sunet generic" << endl; }
-  void afisare() { cout << "Animal: " << nume << endl; }
+  virtual void sunet() { cout << "Sunet generic\n"; }
 };
-
 class Caine : public Animal {
 public:
-  Caine(const char* n) : Animal(n) {}      // apel constructor baza
-  void sunet() override {                   // suprascriere metodă
-    cout << "Ham-ham!" << endl;
-  }
+  void sunet() override { cout << "Ham-ham!\n"; }  // override explicit C++11
 };
+class Pisica : public Animal {
+public:
+  void sunet() override { cout << "Miau!\n"; }
+};
+
+Animal *animale[3] = { new Caine(), new Pisica(), new Animal() };
+for (int i = 0; i < 3; i++) {
+  animale[i]->sunet();  // la execuție, se apelează versiunea corectă!
+}
+// Output:
+// Ham-ham!   ← Caine::sunet()
+// Miau!      ← Pisica::sunet()
+// Sunet generic ← Animal::sunet()
 ```
 
-**Tipuri de moștenire:**
-- **`public`** — public din baza → public în derivată; protected → protected
-- **`protected`** — public și protected din baza → protected în derivată
-- **`private`** — public și protected din baza → private în derivată
+### Mecanismul vtable (tabela de funcții virtuale)
 
-### Funcții virtuale:
-Permit **legarea dinamică** (late binding) — decizia ce funcție se apelează se ia la **execuție**, nu la compilare.
+Compilatorul construiește pentru fiecare clasă cu funcții virtuale o **vtable** = tabelă de pointeri la funcțiile virtuale ale clasei. Fiecare obiect conține implicit un **vptr** = pointer la vtable-ul clasei sale. La apelul `pp->sunet()`, se urmărește: `pp → vptr → vtable → funcția corectă`.
+
+Acest mecanism introduce un mic overhead (o dereferențiere în plus), dar permite polimorfismul dinamic — unul dintre cele mai puternice mecanisme ale POO.
+
+### Reguli pentru funcțiile virtuale
+- Declarate cu `virtual` în clasa de baza
+- Redefinite în clasele derivate (opțional `override` în C++11, recomandat pentru verificare la compilare)
+- Apelul dinamic funcționează **numai** prin pointer sau referință la clasa de baza (nu prin valoare)
+- Pot fi redefinite în orice număr de niveluri de derivare
+- O funcție virtuală rămâne virtuală pe toată ierarhia, chiar dacă în derivate nu se mai scrie `virtual`
+
+### Destructori virtuali
+Dacă se lucrează cu pointeri la clasa de baza care pot pointa obiecte derivate, **destructorul trebuie declarat virtual**:
 
 ```cpp
-Animal *a = new Caine("Rex");
-a->sunet();  // Cu virtual: Ham-ham! / Fără virtual: Sunet generic
+class Animal {
+public:
+  virtual ~Animal() { cout << "~Animal\n"; }  // OBLIGATORIU virtual!
+};
+class Caine : public Animal {
+  char* rasa;
+public:
+  Caine() { rasa = new char[50]; }
+  ~Caine() { delete[] rasa; cout << "~Caine\n"; }
+};
+
+Animal *a = new Caine();
+delete a;
+// CU virtual destructor: ~Caine() + ~Animal() ← corect, memoria e eliberată
+// FĂRĂ virtual destructor: doar ~Animal() ← memory leak! rasa nu e eliberată
 ```
 
-**Reguli:**
-- Declarate cu cuvântul cheie `virtual` în clasa de baza
-- Redefinite în clasele derivate (optional `override` în C++11)
-- Apelate prin pointer sau referință la clasa de baza
+### Funcții virtuale pure și clase abstracte
 
-### Funcții virtuale pure și clase abstracte:
+O **funcție virtuală pură** se declară cu `= 0` și **nu are implementare** în clasa respectivă:
+
 ```cpp
 class Forma {
 public:
-  virtual double arie() = 0;   // funcție virtuală pură
-  virtual double perimetru() = 0;
+  virtual double arie() = 0;        // virtuală pură
+  virtual double perimetru() = 0;   // virtuală pură
+  virtual void afisare() const {    // virtuală normală (ARE implementare)
+    cout << "Sunt o forma geometrica\n";
+  }
+  virtual ~Forma() {}               // destructor virtual
 };
-// Forma este clasă abstractă - NU se pot crea instanțe direct
 ```
-O clasă cu cel puțin o funcție virtuală pură = **clasă abstractă**. Obligă clasele derivate să implementeze funcțiile respective.
+
+O clasă cu cel puțin o funcție virtuală pură = **clasă abstractă**:
+- **Nu** se pot crea instanțe directe ale clasei abstracte (`Forma f;` → eroare!)
+- Definește o interfață pe care clasele concrete trebuie să o implementeze
+- O clasă derivată care nu implementează **toate** funcțiile virtuale pure rămâne și ea abstractă
 
 ```cpp
 class Cerc : public Forma {
-  double r;
+  double raza;
 public:
-  Cerc(double raza) : r(raza) {}
-  double arie() override { return 3.14159 * r * r; }
-  double perimetru() override { return 2 * 3.14159 * r; }
+  Cerc(double r) : raza(r) {}
+  double arie() override { return 3.14159 * raza * raza; }      // implementare obligatorie
+  double perimetru() override { return 2 * 3.14159 * raza; }    // implementare obligatorie
+};
+
+class Dreptunghi : public Forma {
+  double l, h;
+public:
+  Dreptunghi(double ll, double hh) : l(ll), h(hh) {}
+  double arie() override { return l * h; }
+  double perimetru() override { return 2 * (l + h); }
+};
+
+// Utilizare polimorfică:
+Forma *forme[3] = { new Cerc(5.0), new Dreptunghi(3.0, 4.0), new Cerc(2.5) };
+for (int i = 0; i < 3; i++) {
+  cout << "Arie: " << forme[i]->arie() << "\n";  // polimorfism dinamic
+}
+```
+
+---
+
+## 14.17 Moștenire multiplă (pp. 124–133)
+
+**Moștenirea multiplă** permite derivarea unei clase din **mai multe clase de baza** simultan:
+
+```cpp
+class A { public: void metA() {} };
+class B { public: void metB() {} };
+class C : public A, public B {  // C moștenește din A și B
+  // are acces la metA() și metB()
+};
+C c;
+c.metA();  // moștenită din A
+c.metB();  // moștenită din B
+```
+
+Constructorii bazelor sunt apelați în **ordinea listei de derivare**:
+```cpp
+class C : public A, public B {
+public:
+  C() : A(param_a), B(param_b) {}  // A construit primul, apoi B
 };
 ```
 
-### Destructori virtuali:
-Când se lucrează cu pointeri la clasa de baza care pointează obiecte derivate, destructorul trebuie declarat virtual pentru a asigura eliberarea corectă a memoriei:
+### Problema ambiguității
+
+Dacă ambele clase de baza au un **membru cu același nume**, referirea devine ambiguă:
 ```cpp
-virtual ~Animal() {}
+class B1 { public: int x; };
+class B2 { public: int x; };
+class D : public B1, public B2 { };
+D d;
+// d.x;          ← AMBIGUITATE! Eroare de compilare
+d.B1::x = 1;    // rezolvare prin calificare explicită
+d.B2::x = 2;    // rezolvare prin calificare explicită
 ```
 
-### Moștenire multiplă:
+### Problema diamantului (baza comună)
+
+C�nd două clase de baza derivează ambele dintr-o aceeași clasă "bunic", obiectul derivat conține **două copii** ale bunicului:
 ```cpp
-class C : public A, public B { ... };
+class BB { public: int x; };
+class B1 : public BB { };
+class B2 : public BB { };
+class D : public B1, public B2 { };
+D d;
+// d.x       ← AMBIGUITATE (x din B1::BB sau B2::BB?)
+// d.B1::x   ← rezolvare explicită
+// d.B2::x   ← rezolvare explicită
 ```
-O clasă poate moșteni din mai multe clase de baza simultan.
+
+### Baze virtuale — soluția la problema diamantului
+
+Declarând clasele intermediare ca **virtual**, se asigură că obiectul derivat conține **o singură copie** a bazei comune:
+
+```cpp
+class BB { public: int x; };
+class B1 : virtual public BB { };  // virtual
+class B2 : virtual public BB { };  // virtual
+class D : public B1, public B2 { };
+D d;
+d.x = 5;  // VALID — există un singur exemplar din BB!
+```
+
+**Reguli pentru baze virtuale:**
+- Inițializarea bazei virtuale cade în sarcina **celui mai derivat constructor** (D), nu a intermediarilor (B1, B2)
+- O baza virtualizată **nu se poate inițializa** prin lista de inițializatori a intermediarilor
+- Nu se poate face cast dintr-un pointer de baza virtuală la o clasă derivată
 
 ---
 
