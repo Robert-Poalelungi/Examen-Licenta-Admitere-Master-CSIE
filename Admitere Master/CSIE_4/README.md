@@ -1818,6 +1818,266 @@ try (Stream<String> s = Files.lines(Path.of("file.txt"))) {
 
 ---
 
+# 4. FREQUENT EXAM TOPICS — ADDITIONS
+
+## 4.1 `memset` and `memcpy` (C — `<string.h>`)
+
+```c
+#include <string.h>
+
+// memset — fill memory with a constant byte:
+void *memset(void *ptr, int value, size_t n);
+// Sets n bytes starting at ptr to the byte value (only low 8 bits of value used)
+
+char buf[100];
+memset(buf, 0, sizeof(buf));       // zero out entire buffer
+memset(buf, 'A', 10);              // fill first 10 bytes with 'A'
+
+int arr[10];
+memset(arr, 0, sizeof(arr));       // zero int array (works for 0)
+// memset(arr, 1, sizeof(arr));    // WRONG for ints — sets each byte to 1, not each int!
+
+// memcpy — copy n bytes from src to dst (no overlap guarantee):
+void *memcpy(void *dst, const void *src, size_t n);
+
+char src[] = "hello";
+char dst[10];
+memcpy(dst, src, strlen(src) + 1);  // copy including '\0'
+
+struct Point { int x, y; };
+struct Point a = {1, 2}, b;
+memcpy(&b, &a, sizeof(a));  // copy struct
+
+// memmove — like memcpy but handles overlapping regions:
+void *memmove(void *dst, const void *src, size_t n);
+memmove(buf + 2, buf, 5);  // shift right by 2 (overlapping — safe)
+
+// memcmp — compare n bytes:
+int memcmp(const void *s1, const void *s2, size_t n);
+// Returns 0 if equal, <0 if s1 < s2, >0 if s1 > s2
+```
+
+**Key differences from string functions:**
+- `mem*` functions work on raw bytes — they do NOT stop at `'\0'`
+- `memset(arr, 0, sizeof(arr))` is the standard way to zero an array
+- `memcpy` is faster than element-by-element copying for large data
+
+---
+
+## 4.2 `std::string` in C++ (STL)
+
+```cpp
+#include <string>
+using namespace std;
+
+// Construction:
+string s1 = "hello";
+string s2("world");
+string s3(5, 'x');         // "xxxxx"
+string s4 = s1 + " " + s2; // "hello world"
+
+// Common methods:
+s1.length();               // or s1.size() — number of characters
+s1.empty();                // true if length == 0
+s1[0];                     // character access (no bounds check)
+s1.at(0);                  // with bounds check (throws std::out_of_range)
+s1.front();                // first character
+s1.back();                 // last character
+
+s1.append(" world");       // or: s1 += " world"
+s1.substr(1, 3);           // substring: start=1, length=3 → "ell"
+s1.find("ll");             // position of first "ll" (string::npos if not found)
+s1.rfind("l");             // last occurrence
+s1.replace(0, 5, "bye");   // replace chars 0..4 with "bye"
+s1.erase(2, 3);            // remove 3 chars starting at index 2
+s1.insert(2, "XY");        // insert "XY" at position 2
+
+// Comparison (lexicographic):
+s1 == s2;  s1 < s2;  s1.compare(s2);  // 0 if equal
+
+// Conversion:
+int i = stoi("42");              // string → int
+double d = stod("3.14");         // string → double
+string str = to_string(42);      // int → string
+
+// C-string interop:
+const char* cs = s1.c_str();    // get C-string pointer (null-terminated)
+string fromC(cs);                // construct from C-string
+
+// Iteration:
+for (char c : s1) cout << c;
+for (size_t i = 0; i < s1.size(); i++) cout << s1[i];
+```
+
+---
+
+## 4.3 Conversion Constructors in C++
+
+A constructor with **one argument** (or all arguments with defaults except one) acts as an **implicit conversion constructor**:
+
+```cpp
+class MyInt {
+    int val;
+public:
+    MyInt(int v) : val(v) {}     // conversion constructor: int → MyInt
+    int get() const { return val; }
+};
+
+MyInt a = 5;      // implicit conversion: calls MyInt(5)
+MyInt b(10);      // explicit construction
+// MyInt c = 3.7; // also works: double → int → MyInt (with narrowing warning)
+
+// Implicit conversion in function call:
+void display(MyInt m) { cout << m.get(); }
+display(42);  // implicitly converts 42 to MyInt(42)
+
+// Preventing implicit conversion with 'explicit':
+class Safe {
+    int val;
+public:
+    explicit Safe(int v) : val(v) {}
+};
+
+Safe s1(5);      // OK — direct initialization
+// Safe s2 = 5; // ERROR — implicit conversion disabled
+// display_safe(42);  // ERROR if display_safe takes Safe by value
+```
+
+**Practical example — class with pointer (deep copy):**
+```cpp
+class String {
+    char* data;
+    int len;
+public:
+    String(const char* s = "") {          // conversion + default constructor
+        len = strlen(s);
+        data = new char[len + 1];
+        strcpy(data, s);
+    }
+    String(const String& other) {         // copy constructor (deep copy!)
+        len = other.len;
+        data = new char[len + 1];
+        strcpy(data, other.data);
+    }
+    String& operator=(const String& other) {  // assignment operator
+        if (this != &other) {
+            delete[] data;
+            len = other.len;
+            data = new char[len + 1];
+            strcpy(data, other.data);
+        }
+        return *this;
+    }
+    ~String() { delete[] data; }
+};
+
+String s1 = "hello";   // calls String(const char*) — conversion constructor
+String s2 = s1;        // calls copy constructor
+```
+
+---
+
+## 4.4 Little-Endian and Byte Casting in C
+
+**Endianness** refers to the byte order used to store multi-byte values in memory.
+
+- **Little-Endian** (x86, most modern CPUs): least significant byte stored first (at lowest address)
+- **Big-Endian** (network byte order, some RISC): most significant byte stored first
+
+```c
+int x = 0x12345678;
+// In memory on Little-Endian:
+// Address: [0]    [1]    [2]    [3]
+// Value:   0x78   0x56   0x34   0x12   (LSB first!)
+
+// Accessing individual bytes via cast:
+char *p = (char *)&x;
+printf("%02X\n", (unsigned char)p[0]);  // 0x78 — least significant byte
+printf("%02X\n", (unsigned char)p[1]);  // 0x56
+printf("%02X\n", (unsigned char)p[2]);  // 0x34
+printf("%02X\n", (unsigned char)p[3]);  // 0x12 — most significant byte
+
+// (char) cast of an int extracts the LEAST SIGNIFICANT BYTE:
+int n = 0x414243;   // = 4276547
+char c = (char)n;   // c = 0x43 = 'C'  (NOT 'A'!)
+
+// Detecting endianness at runtime:
+int test = 1;
+if (*(char *)&test == 1)
+    printf("Little-Endian\n");
+else
+    printf("Big-Endian\n");
+```
+
+**Key exam point:** On a Little-Endian system, `(char)int_value` extracts the **least significant byte** (the last 8 bits), NOT the first/most significant byte.
+
+---
+
+## 4.5 Java `Scanner` Class
+
+`Scanner` is the standard class for reading input from console, files, or strings in Java.
+
+```java
+import java.util.Scanner;
+import java.io.*;
+
+// Reading from console (stdin):
+Scanner sc = new Scanner(System.in);
+
+int i = sc.nextInt();           // read next integer
+double d = sc.nextDouble();     // read next double
+String word = sc.next();        // read next whitespace-delimited token
+String line = sc.nextLine();    // read entire line (including spaces)
+boolean b = sc.nextBoolean();   // read "true"/"false"
+
+// Checking before reading (avoid exceptions):
+if (sc.hasNextInt()) {
+    int n = sc.nextInt();
+}
+while (sc.hasNextLine()) {
+    String l = sc.nextLine();
+    System.out.println(l);
+}
+
+// Common pitfall — mixing nextInt() with nextLine():
+int n = sc.nextInt();
+sc.nextLine();       // consume the leftover '\n' after the int!
+String s = sc.nextLine();  // now reads the actual next line
+
+// Reading from a file:
+try (Scanner fileSc = new Scanner(new File("data.txt"))) {
+    while (fileSc.hasNextLine()) {
+        System.out.println(fileSc.nextLine());
+    }
+} catch (FileNotFoundException e) {
+    e.printStackTrace();
+}
+
+// Reading from a string:
+Scanner strSc = new Scanner("10 3.14 hello");
+int num = strSc.nextInt();      // 10
+double dbl = strSc.nextDouble(); // 3.14
+String str = strSc.next();       // "hello"
+
+// Custom delimiter:
+Scanner csv = new Scanner("a,b,c,d");
+csv.useDelimiter(",");
+while (csv.hasNext()) {
+    System.out.print(csv.next() + " ");  // a b c d
+}
+
+sc.close();  // close when done
+```
+
+**Scanner vs. BufferedReader:**
+| | `Scanner` | `BufferedReader` |
+|---|---|---|
+| Parsing | Built-in (`nextInt`, `nextDouble`) | Manual (`Integer.parseInt`) |
+| Speed | Slower | Faster |
+| Use case | Console input, simple parsing | Large file reading |
+
+---
+
 *Summary created from the exact page ranges specified in the CSIE4 Master Exam bibliography, ASE Bucharest 2025–2026.*
 
 *Coverage: K&R C (pp. 35–190), Stroustrup C++ 3rd Ed. (pp. 59–132, 255–410), OCP Java SE 17 Study Guide (pp. 1–623).*

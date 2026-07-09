@@ -1793,6 +1793,140 @@ istringstream is(str); int val; is >> val;
 
 ---
 
+# 6. SUBIECTE FRECVENTE — COMPLETĂRI
+
+## 6.1 SQL dinamic — EXECUTE IMMEDIATE (PL/SQL)
+
+`EXECUTE IMMEDIATE` permite executarea dinamică a instrucțiunilor SQL sau DDL în PL/SQL (SQL care nu se cunoaște la compilare).
+
+```plsql
+-- Execuție DDL din PL/SQL (DDL nu se poate folosi direct în PL/SQL):
+BEGIN
+  EXECUTE IMMEDIATE 'DROP TABLE angajati_temp';
+  EXECUTE IMMEDIATE 'CREATE TABLE angajati_temp AS SELECT * FROM angajati WHERE 1=2';
+END;
+
+-- Execuție DML dinamic cu variabile de legătură (binding):
+DECLARE
+  v_tabel VARCHAR2(30) := 'angajati';
+  v_sal   NUMBER := 3000;
+  v_count NUMBER;
+BEGIN
+  EXECUTE IMMEDIATE 'SELECT COUNT(*) FROM ' || v_tabel || ' WHERE salariu > :1'
+    INTO v_count
+    USING v_sal;   -- :1 se înlocuiește cu v_sal
+  DBMS_OUTPUT.PUT_LINE('Numar: ' || v_count);
+END;
+
+-- Execuție cu parametri OUT:
+EXECUTE IMMEDIATE 'SELECT MAX(salariu) FROM angajati' INTO v_sal;
+
+-- UPDATE dinamic:
+EXECUTE IMMEDIATE 'UPDATE ' || v_tabel || ' SET salariu = salariu * 1.1 WHERE dep_id = :1'
+  USING 10;
+COMMIT;
+```
+
+**Reguli `EXECUTE IMMEDIATE`:**
+- DDL (CREATE, DROP, ALTER, TRUNCATE) se poate executa **doar** prin EXECUTE IMMEDIATE în PL/SQL
+- Variabilele de legătură folosesc `:1`, `:2` etc. sau `:nume_parametru`
+- `INTO` — pentru SELECT care returnează un singur rând
+- `USING` — furnizează valorile variabilelor de legătură
+
+---
+
+## 6.2 ROUND și TRUNC pe DATE
+
+Pe lângă utilizarea numerică, `ROUND` și `TRUNC` funcționează și pe date calendaristice:
+
+```sql
+-- ROUND pe DATE — rotunjire la unitatea specificată:
+ROUND(data, 'YEAR')   -- 1 iulie → 1 jan anul următor; înainte → 1 jan același an
+ROUND(data, 'MONTH')  -- după a 16-a zi → prima zi luna viitoare
+ROUND(data, 'DAY')    -- după amiaza → ziua următoare
+ROUND(data, 'HH')     -- la ora cea mai apropiată
+ROUND(data, 'MI')     -- la minutul cel mai apropiat
+
+-- TRUNC pe DATE — trunchierea la unitatea specificată:
+TRUNC(SYSDATE, 'YEAR')    -- 01-JAN-<an curent>
+TRUNC(SYSDATE, 'MONTH')   -- prima zi a lunii curente
+TRUNC(SYSDATE, 'DAY')     -- prima zi a săptămânii (luni)
+TRUNC(SYSDATE)             -- ora 00:00:00 a zilei curente
+
+-- Exemple uzuale:
+SELECT TRUNC(hire_date, 'YEAR') FROM employees;   -- anul angajării
+SELECT ROUND(SYSDATE, 'MONTH') FROM dual;
+```
+
+---
+
+## 6.3 `constexpr` și `const` în C++
+
+```cpp
+// const — valoare constantă, inițializată la runtime sau compilare:
+const int n = 10;           // constantă (valoarea nu se poate modifica)
+const int m = getSize();    // OK — inițializată la runtime
+
+// constexpr — evaluată obligatoriu la COMPILARE:
+constexpr int SIZE = 10;    // OK — valoare literală
+constexpr int MAX = SIZE * 2; // OK — expresie constexpr
+
+// constexpr function — poate fi evaluată la compilare:
+constexpr int square(int x) { return x * x; }
+constexpr int s = square(5);   // evaluat la compilare: s = 25
+
+// Utilizare în switch (necesită constexpr sau const integral):
+constexpr char sep = '-';
+switch (c) {
+  case sep:   // OK cu constexpr
+    break;
+}
+
+// const nu merge în switch dacă e inițializat la runtime:
+const char sep2 = getSep();
+// switch (c) { case sep2: ... }  // EROARE — nu e constantă la compilare
+```
+
+**Diferențe cheie:**
+| | `const` | `constexpr` |
+|---|---|---|
+| Evaluare | Runtime sau compilare | Obligatoriu compilare |
+| Funcții | Nu | Da (`constexpr` funcții) |
+| Switch/case | Doar dacă literal | Da |
+
+---
+
+## 6.4 Pointer constant vs. Pointer la constantă (C/C++)
+
+```c
+int x = 1, y = 2;
+
+// 1. Pointer la constantă — valoarea nu se poate modifica prin pointer:
+const int *p1 = &x;   // sau: int const *p1 = &x;
+// *p1 = 5;  // EROARE — nu se poate modifica valoarea
+p1 = &y;     // OK — pointerul poate fi redirecționat
+
+// 2. Pointer constant — adresa nu se poate modifica:
+int *const p2 = &x;
+*p2 = 5;    // OK — valoarea se poate modifica
+// p2 = &y; // EROARE — pointerul nu poate fi redirecționat
+
+// 3. Pointer constant la constantă — nici adresa, nici valoarea:
+const int *const p3 = &x;
+// *p3 = 5;  // EROARE
+// p3 = &y;  // EROARE
+
+// Exemplu cu char:
+char z = 'A';
+char *const cp = &z;   // pointer constant la char
+*cp = 'B';   // OK
+// cp = &z2; // EROARE
+```
+
+**Regulă mnemonică:** citește de la dreapta la stânga: `char *const p` = "p este un pointer constant la char".
+
+---
+
 *Rezumat realizat pe baza paginilor exacte cerute în bibliografia examenului de specialitate Master CSIE3, ASE București 2025–2026.*
 
 *Față de rezumatul de licență, CSIE3 adaugă:*
