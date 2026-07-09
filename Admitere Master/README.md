@@ -102,18 +102,29 @@ Toate programele CSIE (indiferent de limbă):
 
 ## 5. Modalitate de admitere
 
-### Criteriul general de admitere
+### Formula de calcul a mediei de admitere *(Art. 26)*
 
-Admiterea la programele de masterat CSIE se face pe baza **mediei de admitere**, calculată astfel:
+Admiterea la programele de masterat CSIE cu examen de specialitate (CSIE 3, CSIE 4) se face pe baza **punctajului general de admitere (P)**, calculat astfel:
 
-| Componentă | Pondere |
-|-----------|---------|
-| Media examenului de licență (media notelor din cei 3/4 ani de studii + nota examenului de licență) | **100%** pentru programele fără examen de specialitate |
-| Media examenului de specialitate (test grilă 30 întrebări) | pentru programele CSIE 3 și CSIE 4 |
+```
+P = (ML × 5) + (PS × 5)        [max 100 puncte]
+M = P / 10                      [media de admitere, max 10]
+```
+
+| Componentă | Simbol | Pondere | Descriere |
+|-----------|--------|---------|-----------|
+| **Media examenului de licență** | ML | **50%** | Media examenului de finalizare a studiilor de licență (nota din diplomă) |
+| **Examenul de specialitate** | PS | **50%** | Nota la testul-grilă (PS = punctaj_grilă / 10; punctaj maxim 100, din care 10 puncte din oficiu) |
+
+> **Notă:** Punctajul minim pentru a fi declarat **Admis** este **60 de puncte** (echivalent nota **6,00**).
+
+**Exemplu:** ML = 9.50, nota grilă = 80/100 → PS = 8.00 → P = (9.50 × 5) + (8.00 × 5) = 47.5 + 40 = **87.5 puncte** → M = **8.75**
+
+---
 
 ### Programe cu examen de specialitate (test grilă)
 
-Programele cu cod **CSIE 3** și **CSIE 4** susțin un **examen scris tip grilă** cu 30 de întrebări din tematica de specialitate:
+Programele cu cod **CSIE 3** și **CSIE 4** susțin un **examen scris tip grilă** cu **30 de întrebări** din tematica de specialitate (durată: 2 ore):
 
 - **CSIE 3** — Informatică economică, E-Business, Baze de date, SIMRPE, TIID
   - Materii: Baze de date relaționale, SQL Oracle, PL/SQL, Programare C, POO C++
@@ -127,11 +138,12 @@ Programele cu cod **CSIE 3** și **CSIE 4** susțin un **examen scris tip grilă
 - Candidații cu certificate lingvistice recunoscute sunt **scutiți** de test (vezi secțiunea 7)
 - Rezultatul este **admis / respins** (nu influențează media de admitere)
 
-### Criterii de departajare (la medii egale)
+### Criterii de departajare la medii egale *(Art. 26 alin. 4)*
 
-1. Media anilor de studiu din licență
-2. Nota examenului de licență
-3. Vârsta candidatului (prioritate cel mai tânăr)
+1. Punctajul de specialitate (nota la examen grilă)
+2. Media examenului de finalizare a studiilor de licență
+3. Media aritmetică a tuturor anilor de studii de licență
+4. Media ultimului an de studii de licență
 
 ---
 
