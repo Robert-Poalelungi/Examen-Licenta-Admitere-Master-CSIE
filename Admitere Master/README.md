@@ -152,7 +152,13 @@ Programele cu cod **CSIE 3** și **CSIE 4** susțin un **examen scris tip grilă
 
 ### Cod CSIE 3 — Informatică economică (limba română)
 
-Programe: Informatică economică, Baze de date – suport pentru afaceri, E-Business, Sisteme informatice pentru managementul resurselor și proceselor economice, Tehnologii informatice pentru ingineria datelor.
+| Program | Site |
+|---------|------|
+| Informatică economică | [ie.ase.ro](http://ie.ase.ro/) |
+| Baze de date – suport pentru afaceri | [bdsa.ase.ro](http://bdsa.ase.ro/) |
+| E-Business | [ebusiness.ase.ro](http://www.ebusiness.ase.ro/) |
+| Sisteme informatice pt. managementul resurselor și proceselor economice | [simpre.ase.ro](http://www.simpre.ase.ro/) |
+| Tehnologii informatice pentru ingineria datelor | [tiid.ase.ro](https://tiid.ase.ro/) |
 
 | Nr. | Materie | Subiecte | Ref. | Pagini |
 |-----|---------|----------|------|--------|
