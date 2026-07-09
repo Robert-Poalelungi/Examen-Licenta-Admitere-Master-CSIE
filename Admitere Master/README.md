@@ -20,8 +20,8 @@
 
 Facultatea de **Cibernetică, Statistică și Informatică Economică (CSIE)** oferă următoarele programe de masterat:
 
-| Cod | Program | Limbă | Tip |
-|-----|---------|-------|-----|
+| Cod tematică concurs | Program | Limbă | Tip |
+|---------------------|---------|-------|-----|
 | CSIE 1 | Cibernetică și economie cantitativă | română | Cercetare |
 | CSIE 2 | Statistică aplicată și data science | română | Cercetare |
 | CSIE 1 | Analiza afacerilor și controlul performanței întreprinderii | română | Profesional |
@@ -39,8 +39,8 @@ Facultatea de **Cibernetică, Statistică și Informatică Economică (CSIE)** o
 
 Sesiunea iulie 2026 — locuri totale (buget + taxă):
 
-| # | Program | Cod | Capacitate | Buget | Taxă | Total locuri |
-|---|---------|-----|-----------|-------|------|-------------|
+| # | Program | Cod tematică concurs | Capacitate | Buget | Taxă | Total locuri |
+|---|---------|---------------------|-----------|-------|------|-------------|
 | 26 | Cibernetică și economie cantitativă | CSIE 1 | 50 | 38 | 8 | **48** |
 | 27 | Statistică aplicată și data science | CSIE 2 | 50 | 38 | 8 | **48** |
 | 28 | Analiza afacerilor și controlul performanței întreprinderii | CSIE 1 | 75 | 56 | 15 | **72** |
