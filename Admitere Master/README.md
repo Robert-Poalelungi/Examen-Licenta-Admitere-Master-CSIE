@@ -248,20 +248,28 @@ Dacă ai un certificat recunoscut de ASE, ești scutit de testul online:
 #### Franceză
 | Certificat | Nivel minim |
 |-----------|------------|
-| DELF / DELF Pro | nivel B2 |
-| DALF | nivel C1 |
-| TCF / TEF | nivel B2 |
-| Diplôme Alliance Française | nivel B2 |
+| DELF (Diplôme d'études en langue française) | nivel B2 |
+| DELF Pro (option professionnelle) | nivel B2 |
+| DALF (Diplôme approfondi de langue française) | nivel C1 |
+| Diplôme de Langue de l'Alliance Française de Paris | nivel B2 |
+| DFP (DFP Affaires / Juridique / Relations Internationales) | nivel B2 |
+| TEFAQ (Test d'Évaluation de Français pour l'accès au Québec) | nivel B2 |
+| TEF Canada (scoruri: înțelegere scrisă 181-232, orală 217-279, lexic 145-186, exprimare scrisă/orală 271-348) | nivel B2 |
+| TCF (Test de connaissance du français) | nivel B2 |
+| TEF (Test d'évaluation du français) | nivel B2 |
 
 #### Germană
 | Certificat | Nivel minim |
 |-----------|------------|
-| Goethe-Zertifikat B2 / C1 / C2 | orice |
+| Goethe-Zertifikat B2 / C1 | orice |
+| Goethe-Zertifikat C2: Großes Deutsches Sprachdiplom | orice |
 | Test DaF | nivel B2/C1 |
-| DSH | orice |
-| Deutsches Sprachdiplom KMK | nivel B2/C1 |
+| DSH (Deutsche Sprachprüfung für den Hochschulzugang) | orice |
+| Deutsches Sprachdiplom KMK – nivel II | nivel B2/C1 |
 
-> **Notă:** Sunt recunoscute și studiile universitare urmate **integral** în engleză, franceză sau germană (dovedite cu diploma și foaia matricolă).
+> **Notă:** Sunt recunoscute și studiile universitare urmate **integral** în engleză, franceză sau germană, precum și cele urmate la **secția bilingv și limbi moderne aplicate** la programele acreditate (dovedite cu diploma și foaia matricolă sau adeverința cu medii, pentru absolvenții licenței iulie 2026).
+>
+> Alte certificate internaționale cu nivel B2/C1/C2 pot fi recunoscute **numai cu aprobarea prealabilă** a Departamentului de Limbi Moderne și Comunicare în Afaceri din ASE. Sunt recunoscute **doar certificatele complete** (nu parțiale/modulare).
 
 ---
 
