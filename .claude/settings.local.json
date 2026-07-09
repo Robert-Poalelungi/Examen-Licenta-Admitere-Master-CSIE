@@ -7,7 +7,29 @@
       "Bash(rm \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE/Admitere Master/CSIE_4/Carti/ocr_Baze de date Oracle. Limbajul SQL - Lungu I_.pdf\")",
       "Bash(rm \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE/Admitere Master/CSIE_4/Carti/ocr_Baze de date. Limbajul PL SQL - Bara et al.pdf\")",
       "Bash(rm \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE/Admitere Master/CSIE_4/Carti/ocr_Programare orientata obiect in limbajul C++ - Smeureanu si Dardala.pdf\")",
-      "Bash(rm \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE/Admitere Master/CSIE_4/Carti/ocr_Programarea in limbajul C C++ - Smeureanu si Dardala.pdf\")"
+      "Bash(rm \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE/Admitere Master/CSIE_4/Carti/ocr_Programarea in limbajul C C++ - Smeureanu si Dardala.pdf\")",
+      "Bash(python3 *)",
+      "WebFetch(domain:csie.ase.ro)",
+      "Bash(mkdir -p \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE/Admitere Master/CSIE_3/Subiecte\")",
+      "Bash(mkdir -p \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE/Admitere Master/CSIE_4/Subiecte\")",
+      "Bash(git -C \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE\" status)",
+      "Bash(git -C \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE\" log --oneline -3)",
+      "Bash(git -C \"C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE\" add \"Admitere Master/CSIE_3/Subiecte/\" \"Admitere Master/CSIE_4/Subiecte/\" \"Examen Licenta/intrebari/\")",
+      "Bash(git -C C:/Users/Robert/Desktop/Examen-Licenta-Admitere-Master-CSIE commit -m ' *)",
+      "Bash(git *)",
+      "PowerShell(python --version 2>&1)",
+      "PowerShell(python3 --version 2>&1)",
+      "PowerShell(python -c \"import pypdf; print\\('pypdf ok'\\)\" 2>&1)",
+      "PowerShell(python -c \"import PyPDF2; print\\('PyPDF2 ok'\\)\" 2>&1)",
+      "PowerShell(python -c \"import pdfminer; print\\('pdfminer ok'\\)\" 2>&1)",
+      "PowerShell(python -c \"import fitz; print\\('fitz ok'\\)\" 2>&1)",
+      "Bash(tesseract --version)",
+      "Bash(pdftoppm -v)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(python -c \"import pdf2image; print\\('pdf2image ok'\\)\" 2>&1)",
+      "PowerShell(python -c \"import fitz; print\\('PyMuPDF ok'\\)\" 2>&1)",
+      "PowerShell(python \"C:\\\\Users\\\\Robert\\\\Desktop\\\\Examen-Licenta-Admitere-Master-CSIE\\\\ocr_subiecte.py\")",
+      "PowerShell(python \"C:\\\\Users\\\\Robert\\\\Desktop\\\\Examen-Licenta-Admitere-Master-CSIE\\\\transform_rezolvari.py\")"
     ]
   }
 }
