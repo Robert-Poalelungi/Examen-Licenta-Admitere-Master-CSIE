@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Examen Licenta CSIE</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Segoe UI", sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; padding: 24px; }
+  h1 { text-align: center; font-size: 1.8rem; color: #38bdf8; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #94a3b8; margin-bottom: 32px; font-size: 0.95rem; }
+  .progress-bar-container { background: #1e293b; border-radius: 8px; height: 8px; margin-bottom: 32px; max-width: 800px; margin-left: auto; margin-right: auto; }
+  .progress-bar { background: #38bdf8; height: 8px; border-radius: 8px; transition: width 0.4s ease; width: 0%; }
+  .progress-text { text-align: center; color: #94a3b8; font-size: 0.85rem; margin-bottom: 8px; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 28px; }
+  .filter-btn { padding: 6px 16px; border-radius: 20px; border: 1px solid #334155; background: #1e293b; color: #94a3b8; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+  .filter-btn:hover, .filter-btn.active { background: #38bdf8; color: #0f172a; border-color: #38bdf8; font-weight: 600; }
+  .card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 24px; margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto; transition: border-color 0.2s; }
+  .card.answered-correct { border-color: #22c55e; }
+  .card.answered-wrong { border-color: #ef4444; }
+  .card-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+  .q-number { background: #0f172a; color: #38bdf8; font-weight: 700; font-size: 0.8rem; padding: 4px 10px; border-radius: 6px; white-space: nowrap; margin-top: 2px; }
+  .tag { font-size: 0.75rem; padding: 2px 8px; border-radius: 12px; margin-left: 4px; }
+  .tag-bd { background: #1d4ed840; color: #60a5fa; border: 1px solid #1d4ed8; }
+  .tag-sql { background: #7c3aed40; color: #a78bfa; border: 1px solid #7c3aed; }
+  .tag-poo { background: #065f4640; color: #34d399; border: 1px solid #065f46; }
+  .tag-c { background: #92400e40; color: #fbbf24; border: 1px solid #92400e; }
+  .question { font-size: 1.05rem; font-weight: 600; color: #f1f5f9; line-height: 1.5; flex: 1; }
+  textarea { width: 100%; min-height: 90px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #e2e8f0; font-size: 0.95rem; padding: 12px; resize: vertical; font-family: inherit; transition: border-color 0.2s; margin-bottom: 12px; }
+  textarea:focus { outline: none; border-color: #38bdf8; }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn { padding: 8px 18px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: all 0.2s; }
+  .btn-reveal { background: #334155; color: #94a3b8; }
+  .btn-reveal:hover { background: #475569; color: #e2e8f0; }
+  .btn-correct { background: #15803d40; color: #4ade80; border: 1px solid #15803d; }
+  .btn-correct:hover { background: #15803d80; }
+  .btn-wrong { background: #9f121240; color: #f87171; border: 1px solid #9f1212; }
+  .btn-wrong:hover { background: #9f121280; }
+  .btn-reset { background: #1e293b; color: #64748b; border: 1px solid #334155; }
+  .btn-reset:hover { background: #334155; color: #94a3b8; }
+  .answer-box { background: #0f172a; border: 1px solid #1e40af; border-radius: 8px; padding: 16px; margin-top: 12px; display: none; animation: fadeIn 0.3s ease; }
+  .answer-box.show { display: block; }
+  .answer-label { color: #38bdf8; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+  .answer-text { color: #cbd5e1; font-size: 0.95rem; line-height: 1.7; white-space: pre-wrap; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+  .stats { display: flex; gap: 16px; justify-content: center; margin-bottom: 28px; flex-wrap: wrap; }
+  .stat { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 10px 20px; text-align: center; }
+  .stat-num { font-size: 1.5rem; font-weight: 700; }
+  .stat-num.correct { color: #4ade80; }
+  .stat-num.wrong { color: #f87171; }
+  .stat-num.total { color: #38bdf8; }
+  .stat-label { font-size: 0.78rem; color: #64748b; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<h1>Quiz Examen Licenta CSIE</h1>
+<p class="subtitle">Scrie raspunsul tau, apoi apasa &bdquo;Arata raspunsul&rdquo; pentru a compara.</p>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num total" id="stat-total">0</div><div class="stat-label">Total intrebari</div></div>
+  <div class="stat"><div class="stat-num correct" id="stat-correct">0</div><div class="stat-label">Corecte &#10003;</div></div>
+  <div class="stat"><div class="stat-num wrong" id="stat-wrong">0</div><div class="stat-label">Gresite &#10007;</div></div>
+</div>
+
+<div class="progress-text" id="progress-text">0 / 0 raspunse</div>
+<div class="progress-bar-container"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div class="filters">
+  <button class="filter-btn active" onclick="filterCards(&#39;all&#39;)">Toate</button>
+  <button class="filter-btn" onclick="filterCards(&#39;bd&#39;)">Baze de date</button>
+  <button class="filter-btn" onclick="filterCards(&#39;sql&#39;)">SQL</button>
+  <button class="filter-btn" onclick="filterCards(&#39;poo&#39;)">POO / C++</button>
+  <button class="filter-btn" onclick="filterCards(&#39;c&#39;)">C</button>
+</div>
+
+<div id="quiz-container">
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q1</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce reprezinta cuvantul cheie this in C++?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Reprezinta pointer la instanta curenta a clasei.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q2</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce este o functie membra?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">O functie definita in interiorul unei clase; apartine acelei clase.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q3</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce este o functie statica?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">O functie statica este o functie care poate fi accesata direct prin intermediul clasei; este asociata cu clasa in sine si nu cu o instanta a acesteia; folosirea unei functii statice nu este dependenta de initializarea unui obiect. Se acceseaza cu Clasa::metoda_statica().</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q4</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce este un atribut static?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Un atribut care poate fi modificat fara a fi necesara initializarea unei instante a clasei; un atribut static nu apartine unei instante a clasei, ci a clasei in sine. Metodele accessor pentru atributele statice trebuie sa fie si ele statice. Se acceseaza cu Clasa::atribut_static.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q5</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce este un atribut constant?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Un atribut constant este un atribut a carui valoare nu poate fi modificata dupa initializarea sa.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q6</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Cand se poate initializa un atribut constant?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Doar in constructor, prin lista de initializare.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q7</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce este o functie virtuala?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">O functie virtuala este o metoda a unei clase (parinte / mostenita) care poate fi suprascrisa in clasele derivate din aceasta.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q8</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Care sunt tipurile de constructori in cadrul unei clase si ce rol are fiecare?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Constructor fara parametri (default) – are rolul de a initializa o instanta a clasei cu valori predefinite pentru atributele sale.
+Constructor cu parametri – are rolul de a initializa o instanta a clasei cu valori custom pentru un set de atribute ale clasei (pot fi toate, poate fi unul singur).
+Constructor de copiere – are rolul de a initializa o instanta a clasei folosind valori dintr-o alta instanta a clasei care a fost initializata deja.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q9</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Care este diferenta intre rolul operatorului = si cel al constructorului de copiere?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Operatorul egal atribuie unei instante DEJA INITIALIZATE valori de la o alta clasa deja initializata.
+Constructorul de copiere initializeaza o instanta NOU CREATA folosind datele dintr-o instanta deja initializata.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q10</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Cand este apelat constructorul de copiere?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Cand instantiem un nou obiect pe baza unuia existent.
+Este apelat automat si:
+- in momentul in care trimitem un obiect prin valoare (nu referinta) ca parametru intr-o metoda
+- cand returnam un obiect prin valoare (nu referinta) dintr-o metoda</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q11</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Cand este apelat operatorul=?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Cand atribuim unui obiect deja creat valorile altui obiect deja creat.
+La autoatribuire (a=a) sau atribuire in lant (a = b = c).
+In momentul in care atribuim unei instante deja create un obiect returnat prin valoare de o metoda.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q12</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce este un memory leak?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Apare in momentul in care nu dezalocam o zona de memorie alocata dinamic (heap). Variabilele din stack se dezaloca automat, cele din heap (new/malloc) trebuie dezalocate manual (delete/free).</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q13</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce este un dangling pointer?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Un dangling pointer arata spre o zona de memorie ce a fost dezalocata / stearsa.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q14</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Cand se apeleaza destructorul?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Cand se iese din scope-ul in care a fost initializat obiectul.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q15</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce este memoria heap?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">O zona de memorie destinata alocarii dinamice (in care putem retine pointeri) si care poate fi alocata manual (new/delete in C++, malloc/free in C).</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q16</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Cum se genereaza un memory leak?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">In momentul in care nu dezalocam o bucata din memoria heap pe care am alocat-o dinamic.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q17</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Care este rolul functiilor accesor in cadrul clasei?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Permit accesul controlat la atributele private ale clasei. Sunt de doua tipuri: getter (get) – consultare, setter (set) – modificare. Sunt definite in zona public.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q18</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce rol au functiile friend in cadrul claselor si care sunt caracteristicile acestora?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Functiile friend primesc acces la atributele private ale clasei prietene.
+Caracteristici: Nu primesc pointer-ul this, nu pot fi mostenite, nu sunt membre ale clasei.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q19</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Care este vizibilitatea implicita in cadrul unei clase (class)?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Private.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q20</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Care este diferenta intre specificatorii class si struct?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Class este specific C++; struct poate fi folosit si in C si in C++.
+Class are vizibilitate implicit private; struct are vizibilitate implicit public.
+In C++, class mosteneste implicit private; struct mosteneste implicit public.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q21</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce reprezinta o clasa?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">O clasa este un sablon (template) pentru crearea de obiecte.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q22</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce reprezinta un obiect?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Un obiect este o instanta a unei clase.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q23</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce reprezinta o instanta a unei clase?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Un obiect — o realizare concreta a clasei, care ocupa memorie si are stare proprie.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q24</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce reprezinta termenul de up-casting?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Reprezentarea unei clase copil prin intermediul unei referinte a clasei parinte. Este un comportament suportat by default (implicit).</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q25</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce reprezinta termenul de down-casting?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Reprezentarea unei clase parinte printr-o referinta a unei clase copil. Nu este suportat by default.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q26</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce este o functie virtuala pura?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">O functie virtuala pura este o metoda virtuala a unei clase care, in plus, nu are corp (= 0). Este obligatoriu de suprascris (override) in clasele derivate.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q27</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce este o clasa abstracta?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">O clasa abstracta contine cel putin o functie virtuala pura. Nu poate fi instantiata direct; serveste doar ca baza pentru derivari.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q28</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce restrictii impune o clasa abstracta?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Nu poate fi instantiata.
+Nu se poate realiza mostenire multipla din clase abstracte.
+Clasele derivate sunt obligate sa implementeze toate metodele virtuale pure.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q29</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">In ce moment are loc efectiv supradefinirea?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">La executie — late binding. Poate avea loc doar in contextul unei ierarhii de derivari si doar daca functiile/metodele sunt marcate ca virtual.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q30</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">In ce moment are loc efectiv supraincarcarea?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">La compilare — early binding. Cel putin doua functii au acelasi nume, dar difera prin numarul si/sau tipul parametrilor.</div>
+  </div>
+</div>
+<div class="card" data-tag="c">
+  <div class="card-header">
+    <span class="q-number">Q31</span>
+    <span class="tag tag-c">C</span>
+    <div class="question">Ce este o structura repetitiva?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">O structura repetitiva este un bloc de instructiuni ce se executa pana cand o conditie este sau nu mai este indeplinita.
+Tipuri:
+- Cu numar cunoscut de pasi: for
+- Cu numar necunoscut de pasi:
+  - Cu verificare initiala (while): mai intai se evalueaza conditia
+  - Cu verificare ulterioara (do-while): mai intai se executa instructiunea, apoi conditia</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q32</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce structuri mai exista pe langa cele relationale?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Structura punctuala, structuri liniare (vectori, matrice, stiva, liste – simplu inlantuita, dublu inlantuita, circulara), arbori, structuri retea (grafuri).</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q33</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce sunt secventele?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Secventele sunt obiecte care genereaza o serie de numere unice intr-o anumita ordine. Se folosesc de regula pentru a genera primary-keys. Sunt user-defined.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q34</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce sunt restrictiile de integritate?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Restrictiile de integritate sunt reguli definite asupra bazei de date astfel incat datele sa ramana conforme si corecte in raport cu lumea reala.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q35</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Care sunt tipurile de restrictii de integritate?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Pot fi de tip:
+- Cheie primara (PRIMARY KEY)
+- Cheie straina (FOREIGN KEY)
+- CHECK constraints
+- Unicitate (UNIQUE)
+- Domeniu (tipul de date, intervalul de valori sau valoarea implicita)</div>
+  </div>
+</div>
+<div class="card" data-tag="sql">
+  <div class="card-header">
+    <span class="q-number">Q36</span>
+    <span class="tag tag-sql">SQL</span>
+    <div class="question">Care este diferenta dintre CASE si DECODE?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">DECODE: specific Oracle, asemanator structurii if-then-else, utilizat pentru date de volum mic si comparari simple.
+CASE: standardizat in SQL, permite lucrul cu un volum mai mare de date si comparari mai complexe. Portabil intre diferite SGBD-uri.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q37</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Care sunt modificatorii de acces in C++?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">private, protected si public.
+- private: accesibil doar din interiorul clasei
+- protected: accesibil din interiorul clasei si din clasele derivate
+- public: accesibil de oriunde</div>
+  </div>
+</div>
+<div class="card" data-tag="c">
+  <div class="card-header">
+    <span class="q-number">Q38</span>
+    <span class="tag tag-c">C</span>
+    <div class="question">Ce este un pointer?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Pointerul este o variabila ce stocheaza adresa de memorie a unei alte variabile.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q39</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Care sunt diferentele intre C si C++?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">C este un limbaj procedural (structurat pe functii).
+C++ vine cu suport pentru paradigma orientata-obiect in plus fata de C — adauga clase, mostenire, polimorfism, suprasincarcare, template-uri etc.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q40</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Care sunt operatorii relationali din algebra relationala?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">6 operatori de baza: reuniune, diferenta, selectie, proiectie, produs cartezian, jonctiune.
+2 operatori derivati: intersectie si diviziune.
++ Operatori din calculul relational.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q41</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce este normalizarea?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Normalizarea este procesul prin care se asigura definirea unei structuri conceptuale optime a datelor, se minimizeaza riscurile de erori la inserare si se reduce redundanta datelor.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q42</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce este o tranzactie?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">O tranzactie este un set de instructiuni de tip actualizare, inserare, stergere efectuate asupra unui set de date, care ori se executa toate, ori sunt anulate toate.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q43</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Cate tipuri de normalizari exista?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">FN1: Orice atribut este atomic (nu mai poate fi divizat).
+FN2: Este in FN1 + orice coloana non-cheie depinde de intreaga cheie primara (nu partial).
+FN3: Este in FN2 + nu exista dependente tranzitive.
+FN Boyce-Codd (FN 3.5): Dependentele functionale netriviale contin in stanga o cheie candidata.
+FN4: Este in FNBC + nu se manifesta mai mult de o dependenta multi-valoare.
+FN5: Este in FN4 + fiecare dependenta jonctiune e implicata de o cheie candidata.
+Exista si FN6 (foarte rar folosit).</div>
+  </div>
+</div>
+<div class="card" data-tag="sql">
+  <div class="card-header">
+    <span class="q-number">Q44</span>
+    <span class="tag tag-sql">SQL</span>
+    <div class="question">Ce este SQL?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">SQL (Structured Query Language) este un limbaj de interogare asociat sistemelor de baze de date relationale, folosit pentru crearea, manipularea si mentinerea acestora.</div>
+  </div>
+</div>
+<div class="card" data-tag="sql">
+  <div class="card-header">
+    <span class="q-number">Q45</span>
+    <span class="tag tag-sql">SQL</span>
+    <div class="question">Este SQL un limbaj procedural sau nu?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Nu. SQL nu este procedural — specifici CE vrei, nu CUM sa obtii.
+PL/SQL este procedural (extinde SQL cu structuri procedurale).</div>
+  </div>
+</div>
+<div class="card" data-tag="sql">
+  <div class="card-header">
+    <span class="q-number">Q46</span>
+    <span class="tag tag-sql">SQL</span>
+    <div class="question">Ce este un limbaj procedural?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Un limbaj procedural este un limbaj de programare ce se bazeaza pe scrierea sub forma de proceduri pentru structurarea codului. Specifica o serie de pasi si proceduri bine structurate. Exemple: C, Pascal, Fortran.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q47</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce este o baza de date no-sql?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">O baza de date no-sql este o baza de date care nu foloseste un model relational pentru a reprezenta datele din interiorul acesteia (ex: document JSON). Ofera scalabilitate si disponibilitate ridicate.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q48</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Care este diferenta dintre o clasa si un obiect?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">O clasa este un sablon pentru crearea de obiecte, iar obiectul este o instanta a clasei.</div>
+  </div>
+</div>
+<div class="card" data-tag="sql">
+  <div class="card-header">
+    <span class="q-number">Q49</span>
+    <span class="tag tag-sql">SQL</span>
+    <div class="question">Enumara limbajele SQL (DML, DDL, etc.)</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">DDL (Definire): CREATE, ALTER, DROP, TRUNCATE
+DML (Manipulare): SELECT, INSERT, UPDATE, DELETE
+DCL (Control): GRANT, REVOKE
+TCL (Tranzactii): ROLLBACK, COMMIT, SAVEPOINT</div>
+  </div>
+</div>
+<div class="card" data-tag="c">
+  <div class="card-header">
+    <span class="q-number">Q50</span>
+    <span class="tag tag-c">C</span>
+    <div class="question">De ce folosim pointeri?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Pentru a reduce amprenta de memorie a programului.
+Ca parametri in functii, pointerii sunt folositi pentru a modifica direct valoarea de la adresa indicata.
+Permit scrierea de metode care sa modifice date aflate si in afara scope-ului lor.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q51</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce este encapsularea?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Incapsularea este unul dintre cele 4 principii OOP si face referire la protejarea accesului la atributele unei clase prin definirea lor cu modificatorul de acces private si accesarea lor doar prin intermediul metodelor accesor.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q52</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Care sunt functiile unui SGBD?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Manipularea, gestiunea si stocarea datelor, controlul accesului, integritatea datelor, posibilitatea de backup si recuperare, oferirea unei interfete de utilizator.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q53</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Care sunt avantajele bazelor de date relationale fata de no-sql?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Permit crearea unor relatii complexe intre tabele prin intermediul cheilor externe (FOREIGN KEY).
+Respecta principiile ACID (Atomicitate, Consistenta, Izolare, Durabilitate).</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q54</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce sunt selectia si proiectia?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Selectia: creeaza o relatie R3 cu aceeasi schema ca R care contine doar tuplurile ce respecta conditia — taieturi orizontale (elimina randuri).
+Proiectia: creeaza o relatie R3 cu o schema diferita (doar anumite atribute) — taieturi verticale (elimina coloane).</div>
+  </div>
+</div>
+<div class="card" data-tag="c">
+  <div class="card-header">
+    <span class="q-number">Q55</span>
+    <span class="tag tag-c">C</span>
+    <div class="question">Ce este un struct in C?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Un tip de date definit de programator care permite gruparea / alaturarea unei colectii de variabile de tipuri de date diferite in interiorul unei singure unitati logice.</div>
+  </div>
+</div>
+<div class="card" data-tag="sql">
+  <div class="card-header">
+    <span class="q-number">Q56</span>
+    <span class="tag tag-sql">SQL</span>
+    <div class="question">Care este diferenta intre COUNT si UPPER?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">COUNT este o functie de grup (multi-row / agregare) ce permite numararea randurilor dintr-o tabela.
+UPPER este o functie scalara (single-row) ce transforma toate literele mici in litere mari.</div>
+  </div>
+</div>
+<div class="card" data-tag="sql">
+  <div class="card-header">
+    <span class="q-number">Q57</span>
+    <span class="tag tag-sql">SQL</span>
+    <div class="question">Care este structura comenzii SELECT?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">SELECT .. FROM .. JOIN .. ON .. WHERE .. GROUP BY .. HAVING .. ORDER BY ..</div>
+  </div>
+</div>
+<div class="card" data-tag="sql">
+  <div class="card-header">
+    <span class="q-number">Q58</span>
+    <span class="tag tag-sql">SQL</span>
+    <div class="question">Da exemple de comenzi SQL.</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">SELECT, INSERT, UPDATE, DELETE (DML)
+CREATE, ALTER, DROP (DDL)
+GRANT, REVOKE (DCL)
+COMMIT, ROLLBACK, SAVEPOINT (TCL)</div>
+  </div>
+</div>
+<div class="card" data-tag="sql">
+  <div class="card-header">
+    <span class="q-number">Q59</span>
+    <span class="tag tag-sql">SQL</span>
+    <div class="question">Ce comenzi folosim pentru protectia datelor?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">GRANT si REVOKE (DCL = Data Control Language / limbaj pentru controlul datelor).</div>
+  </div>
+</div>
+<div class="card" data-tag="sql">
+  <div class="card-header">
+    <span class="q-number">Q60</span>
+    <span class="tag tag-sql">SQL</span>
+    <div class="question">Ce sunt intersectia si diviziunea in SQL?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Intersectia: operatie pe doua relatii R1 si R2; rezulta R3 cu schema identica continand tuplurile comune.
+Sintaxa SQL: SELECT ... INTERSECT SELECT ...
+Diviziunea: operatie pe o relatie R(A,B) si un set de tupluri r(B); rezulta o relatie cu atributele din A care au corespondent pentru TOATE valorile din B ale lui r.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q61</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce sunt clasele derivate?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Clasele derivate sunt clase ce mostenesc o clasa parinte preluand toate functionalitatile acesteia, dar avand si functionalitati specifice proprii.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q62</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce este un SGBD?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Un program software care ofera modalitatea de gestiune si manipulare a sistemului de baze de date, alaturi de o interfata utilizator.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q63</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce inseamna ACID?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Atomicitate – o tranzactie are loc fie complet, fie deloc.
+Consistenta – BD este valida atat inainte cat si dupa tranzactie; daca nu respecta restrictiile de integritate, tranzactia este respinsa.
+Izolare – doua tranzactii simultane nu interfereaza una cu cealalta.
+Durabilitate – odata finalizata, modificarile raman in BD chiar daca apar defectiuni ale sistemului.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q64</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce este o baza de date?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">O baza de date este una sau mai multe colectii de date aflate in interdependenta, alaturi de un fisier de descriere globala a datelor si a legaturilor dintre ele.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q65</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce este un depozit de date?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Un depozit de date este o colectie de date centralizata din una sau mai multe surse diferite si este utilizat in general pentru rapoarte si analiza datelor.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q66</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce este o baza de date relationala?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">O baza de date care respecta modelul relational — datele sunt reprezentate sub forma de tabele cu legaturi intre ele prin chei externe.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q67</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce este o baza de date nerelationala?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">O baza de date care foloseste un model altul decat cel relational (ex: document JSON, key-value, graph).</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q68</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce este un index?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Un index este un obiect al bazei de date care imbunatateste viteza de acces (citire) la tuplurile unei relatii. In spate este un B-Tree care ordoneaza crescator randurile. Dezavantaj: ingreuneaza insertiile. Se folosesc cand citirile sunt mai frecvente decat insertiile.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q69</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce este ERD?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">ERD (Entity-Relationship Diagram) este reprezentarea modelului entitate-asociere — modelul conceptual al unei baze de date relationale. Practic, ERD este schema conceptuala a bazei de date.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q70</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce urmeaza dupa ERD?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Implementarea logica, normalizarea bazei de date si implementarea fizica.</div>
+  </div>
+</div>
+<div class="card" data-tag="sql">
+  <div class="card-header">
+    <span class="q-number">Q71</span>
+    <span class="tag tag-sql">SQL</span>
+    <div class="question">Care sunt jonctiunile?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">INNER JOIN / NATURAL JOIN (jonctiune interna)
+LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN (jonctiune externa)
+Semijonctiunea</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q72</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Care sunt operatorii binari din algebra relationala?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Reuniune, diferenta, jonctiune, intersectie, diviziune, produs cartezian.</div>
+  </div>
+</div>
+<div class="card" data-tag="sql">
+  <div class="card-header">
+    <span class="q-number">Q73</span>
+    <span class="tag tag-sql">SQL</span>
+    <div class="question">Care este diferenta intre HAVING si WHERE?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">WHERE: se aplica pe fiecare rand individual inainte de grupare.
+HAVING: se aplica pe rezultatul dupa GROUP BY (grupuri de randuri). In HAVING se pot folosi functii de agregare (ex: HAVING AVG(coloana) > 5000).</div>
+  </div>
+</div>
+<div class="card" data-tag="sql">
+  <div class="card-header">
+    <span class="q-number">Q74</span>
+    <span class="tag tag-sql">SQL</span>
+    <div class="question">Ce este Angular?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Angular este un framework open source pentru JavaScript, dezvoltat si intretinut de Google, bazat pe TypeScript, cu o arhitectura bazata pe componente pentru partea de client (frontend).</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q75</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Care sunt conceptele in OOP?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Incapsulare: obiectele si functiile sunt declarate private si accesate cu ajutorul functiilor accesor.
+Abstractizare: ascunderea complexitatii codului prin clase abstracte si interfete.
+Mostenire: clasele derivate mostenesc functionalitatile claselor parinte — reutilizarea codului.
+Polimorfism:
+  - Suprasincarcare – la compilare – early binding
+  - Supradefinire – la executie – late binding</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q76</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Care este diferenta intre o clasa abstracta si o interfata?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Clasa abstracta: are cel putin o metoda pur virtuala; poate avea alte metode implementate; poate avea constructor, dar nu poate fi instantiata.
+Interfata: un caz special de clasa abstracta care are TOATE metodele pur virtuale si nimic altceva.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q77</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce trasaturi are o baza de date in FN4?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">O schema de relatie R este in forma normala 4 daca orice dependenta multivalurica netriviala X >>Y are in partea stanga o supercheie. FN4 considera si dependentele multivalorice. Definitia ei este similara cu cea pentru FNBC dar conditia se pune pentru dependentele multivalorice.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q78</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">Ce este o tabela?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">O tabela intr-o baza de date este o structura organizata in randuri si coloane, folosita pentru a stoca date intr-un format sistematic. Fiecare rand reprezinta o inregistrare unica, iar fiecare coloana contine un tip specific de informatie despre acea inregistrare.</div>
+  </div>
+</div>
+<div class="card" data-tag="sql">
+  <div class="card-header">
+    <span class="q-number">Q79</span>
+    <span class="tag tag-sql">SQL</span>
+    <div class="question">Care sunt instructiunile de grup din SQL?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">GROUP BY
+Functii de agregare: COUNT, SUM, AVG, MAX, MIN
+HAVING (filtrare pe grupuri)</div>
+  </div>
+</div>
+<div class="card" data-tag="c">
+  <div class="card-header">
+    <span class="q-number">Q80</span>
+    <span class="tag tag-c">C</span>
+    <div class="question">Cati octeti ocupa stocarea cuvantului "test"?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">5 octeti: cate unul pentru fiecare caracter ('t','e','s','t') si unul pentru caracterul nul (' ') de la final.</div>
+  </div>
+</div>
+<div class="card" data-tag="bd">
+  <div class="card-header">
+    <span class="q-number">Q81</span>
+    <span class="tag tag-bd">Baze de date</span>
+    <div class="question">In ce forma normala este baza de date folosita la proiect si de ce?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Raspuns deschis — depinde de proiect. Normalizarea este procesul de organizare eficienta a datelor. Scopuri: eliminarea datelor redundante si asigurarea consistentei datelor. O BD bine proiectata se afla de obicei in cel putin FN3.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q82</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce este compunerea claselor (has-a)?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Compunerea claselor este o relatie in care o clasa are membri de tipurile altor clase. Relatie "has-a". Poate fi 1-1 sau 1-M. Poate modela apartenenta de pointeri sau de obiecte ca membri ai altor clase. Diferit de mostenire (is-a).</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q83</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce este un STREAM?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Un STREAM este un obiect ce permite gestionarea si/sau manipularea sirurilor de bytes. Utilizate de obicei pentru formele supraincarcate ale operatorilor << (output, ex: cout) si >> (input, ex: cin).</div>
+  </div>
+</div>
+<div class="card" data-tag="c">
+  <div class="card-header">
+    <span class="q-number">Q84</span>
+    <span class="tag tag-c">C</span>
+    <div class="question">Ce dimensiune ocupa tipurile de date in C pe arhitecturi de 32 si 64 de biti?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">1 octet (8 biti): char, unsigned char
+2 octeti (16 biti): short, unsigned short
+4 octeti (32 biti): int, unsigned int, float
+8 octeti (64 biti): double, long long, unsigned long long
+
+Pointer:
+- 4 octeti pe arhitectura de 32 biti
+- 8 octeti pe arhitectura de 64 biti</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q85</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce sunt supraincarcarea functiilor si supradefinirea metodelor?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Supraincarcarea functiilor: cel putin doua functii au acelasi nume, dar difera prin numarul si tipul parametrilor. Identificarea se face la compilare (early binding). Polimorfism slab.
+
+Supradefinirea: functiile au aceeasi semnatura dar implementari diferite in clase derivate. Alegerea functiei se face la executie (late binding). Polimorfism puternic. Necesita marcarea cu virtual.</div>
+  </div>
+</div>
+<div class="card" data-tag="poo">
+  <div class="card-header">
+    <span class="q-number">Q86</span>
+    <span class="tag tag-poo">POO / C++</span>
+    <div class="question">Ce este supraincarcarea operatorilor? Cum se realizeaza?</div>
+  </div>
+  <textarea placeholder="Scrie raspunsul tau aici..."></textarea>
+  <div class="btn-row">
+    <button class="btn btn-reveal" onclick="toggleAnswer(this)">Arata raspunsul</button>
+    <button class="btn btn-correct" onclick="markCard(this, true)">&#10003; Corect</button>
+    <button class="btn btn-wrong" onclick="markCard(this, false)">&#10007; Gresit</button>
+    <button class="btn btn-reset" onclick="resetCard(this)">Reseteaza</button>
+  </div>
+  <div class="answer-box">
+    <div class="answer-label">Raspuns</div>
+    <div class="answer-text">Supraincarcarea operatorilor permite specializarea operatorilor existenti pentru tipuri de date definite de utilizator.
+Se realizeaza prin functii cu denumirea: operator<semn_grafic>
+
+Tehnici:
+- Metoda membra: cand primul operand este de tipul clasei (transpus in this)
+- Functie globala: cand primul operand nu este de tipul clasei (ex: <<, >>)
+
+Tipuri de operatori: comparatie (==, !=, <, >), aritmetici (+, -, *, /), acces ([], (), ->), atribuire (=), citire/afisare (<<, >>), unari (++, --, !), binari.</div>
+  </div>
+</div>
+
+</div><!-- end quiz-container -->
+
+<script>
+let correctCount = 0;
+let wrongCount = 0;
+
+function updateStats() {
+  const cards = document.querySelectorAll('.card:not(.hidden)');
+  const answered = document.querySelectorAll('.card:not(.hidden).answered-correct, .card:not(.hidden).answered-wrong').length;
+  document.getElementById('stat-total').textContent = cards.length;
+  document.getElementById('stat-correct').textContent = correctCount;
+  document.getElementById('stat-wrong').textContent = wrongCount;
+  document.getElementById('progress-text').textContent = answered + ' / ' + cards.length + ' raspunse';
+  const pct = cards.length > 0 ? (answered / cards.length * 100) : 0;
+  document.getElementById('progress-bar').style.width = pct + '%';
+}
+
+function toggleAnswer(btn) {
+  const card = btn.closest('.card');
+  const box = card.querySelector('.answer-box');
+  const isShown = box.classList.contains('show');
+  box.classList.toggle('show', !isShown);
+  btn.textContent = isShown ? 'Arata raspunsul' : 'Ascunde raspunsul';
+}
+
+function markCard(btn, correct) {
+  const card = btn.closest('.card');
+  const wasCorrect = card.classList.contains('answered-correct');
+  const wasWrong = card.classList.contains('answered-wrong');
+  if (wasCorrect) correctCount--;
+  if (wasWrong) wrongCount--;
+  card.classList.remove('answered-correct', 'answered-wrong');
+  if (correct) { card.classList.add('answered-correct'); correctCount++; }
+  else { card.classList.add('answered-wrong'); wrongCount++; }
+  updateStats();
+}
+
+function resetCard(btn) {
+  const card = btn.closest('.card');
+  const wasCorrect = card.classList.contains('answered-correct');
+  const wasWrong = card.classList.contains('answered-wrong');
+  if (wasCorrect) correctCount--;
+  if (wasWrong) wrongCount--;
+  card.classList.remove('answered-correct', 'answered-wrong');
+  card.querySelector('textarea').value = '';
+  const box = card.querySelector('.answer-box');
+  box.classList.remove('show');
+  const revealBtn = card.querySelector('.btn-reveal');
+  revealBtn.textContent = 'Arata raspunsul';
+  updateStats();
+}
+
+function filterCards(tag) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  correctCount = 0; wrongCount = 0;
+  document.querySelectorAll('.card').forEach(card => {
+    if (tag === 'all' || card.dataset.tag === tag) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+  updateStats();
+}
+
+updateStats();
+</script>
+</body>
+</html>
