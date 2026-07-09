@@ -10,9 +10,10 @@
 3. [Taxe de înscriere și școlarizare](#3-taxe-de-înscriere-și-școlarizare)
 4. [Calendar admitere — Sesiunea iulie 2026](#4-calendar-admitere--sesiunea-iulie-2026)
 5. [Modalitate de admitere](#5-modalitate-de-admitere)
-6. [Documente necesare pentru dosar](#6-documente-necesare-pentru-dosar)
-7. [Competența lingvistică](#7-competența-lingvistică)
-8. [Scutire taxă de înscriere](#8-scutire-taxă-de-înscriere)
+6. [Tematică și bibliografie examen de specialitate](#6-tematică-și-bibliografie-examen-de-specialitate)
+7. [Documente necesare pentru dosar](#7-documente-necesare-pentru-dosar)
+8. [Competența lingvistică](#8-competența-lingvistică)
+9. [Scutire taxă de înscriere](#9-scutire-taxă-de-înscriere)
 
 ---
 
@@ -147,7 +148,84 @@ Programele cu cod **CSIE 3** și **CSIE 4** susțin un **examen scris tip grilă
 
 ---
 
-## 6. Documente necesare pentru dosar
+## 6. Tematică și bibliografie examen de specialitate
+
+### Cod CSIE 3 — Informatică economică (limba română)
+
+Programe: Informatică economică, Baze de date – suport pentru afaceri, E-Business, Sisteme informatice pentru managementul resurselor și proceselor economice, Tehnologii informatice pentru ingineria datelor.
+
+| Nr. | Materie | Subiecte | Ref. | Pagini |
+|-----|---------|----------|------|--------|
+| 1 | **Baze de date relaționale** | Modelul relațional: structura relațională a datelor, operatori relaționali, restricții de integritate. Exemplificări în Oracle | [1] | 103-122; 129-131 |
+| 1 | **Baze de date relaționale** | Realizarea BD relaționale: analiza statică (diagrama entitate-asociere); proiectarea structurii conceptuale, logice și fizice; normalizarea datelor | [1] | 144-186; 197-201 |
+| 2 | **Programarea în SQL** | Actualizarea structurii BD: crearea obiectelor, modificarea proprietăților și ștergerea acestora | [2] | 101-122 |
+| 2 | **Programarea în SQL** | Actualizarea datelor: adăugarea de înregistrări, modificarea valorilor, ștergerea înregistrărilor | [2] | 123-126 |
+| 2 | **Programarea în SQL** | Interogarea datelor: filtrarea, joncțiuni, funcții SQL, gruparea datelor, gestiunea subcererilor | [2] | 127-171 |
+| 3 | **Programarea în PL/SQL** | Elemente de programare procedurală | [3] | 9-52 |
+| 3 | **Programarea în PL/SQL** | Mecanismul de cursor | [3] | 53-77 |
+| 3 | **Programarea în PL/SQL** | Tratarea excepțiilor | [3] | 83-102 |
+| 3 | **Programarea în PL/SQL** | Gestiunea subprogramelor: proceduri și funcții | [3] | 103-128 |
+| 4 | **Programarea în C** | Tipuri fundamentale de date, operatori și expresii | [4] | 16-28; 30-46 |
+| 4 | **Programarea în C** | Instrucțiuni: structura liniară, alternativă, repetitivă, multiplă | [4] | 48-58 |
+| 4 | **Programarea în C** | Masive și pointeri | [4] | 60-74 |
+| 4 | **Programarea în C** | Lucru cu șiruri de caractere | [4] | 76-88 |
+| 4 | **Programarea în C** | Funcții și clase de funcții | [4] | 90-102 |
+| 4 | **Programarea în C** | Structuri și uniuni | [4] | 118-135 |
+| 4 | **Programarea în C** | Operații de intrare / ieșire | [4] | 13-14; 184-196 |
+| 5 | **POO în C++** | Clase și obiecte | [5] | 11-27; 33-35 |
+| 5 | **POO în C++** | Masive de obiecte | [5] | 28-29 |
+| 5 | **POO în C++** | Supraîncărcarea operatorilor | [5] | 52-85 |
+| 5 | **POO în C++** | Friends | [5] | 44-45 |
+| 5 | **POO în C++** | Clase derivate | [5] | 108-115 |
+| 5 | **POO în C++** | Polimorfismul — funcții virtuale | [5] | 116-123 |
+| 5 | **POO în C++** | Fluxuri de intrare / ieșire | [5] | 134-161 |
+
+**Bibliografie CSIE 3:**
+
+| Ref. | Autori | Titlu |
+|------|--------|-------|
+| [1] | Lungu, I.; Bâra, A.; Bodea, C.; Botha, I.; Diaconița, V.; Florea, A.; Velicanu, A. | *Tratat de baze de date. Vol. I. Baze de date. Organizare, proiectare și implementare*, Editura ASE, București, 2011, ISBN 978-606-505-472-1 |
+| [2] | Lungu, I. | *Baze de date Oracle. Limbajul SQL*, Editura ASE, București, 2005, ISBN 973-594-684-X |
+| [3] | Bâra, A.; Botha, I.; Diaconița, V.; Lungu, I.; Velicanu, A. | *Baze de date. Limbajul PL/SQL*, Editura ASE, București, 2009, ISBN 978-606-505-263-5 |
+| [4] | Smeureanu, I.; Dârdală, M. | *Programarea în limbajul C/C++*, Editura CISON, București, 2004, ISBN 973-99725-7-8 |
+| [5] | Smeureanu, I.; Dârdală, M. | *Programarea orientată obiect în limbajul C++*, Editura CISON, București, 2002, ISBN 973-8301-06-8 |
+
+---
+
+### Cod CSIE 4 — Securitatea informatică (limba engleză)
+
+Program: Securitatea Informatică — Cybersecurity Master Program (www.ism.ase.ro)
+
+| Nr. | Subject | Topics | Ref. | Pages |
+|-----|---------|--------|------|-------|
+| 1 | **C Programming Language** | Types, Operators, and Expressions | [1] | 35-54 |
+| 1 | **C Programming Language** | Control Flow (for, if, while, switch) | [1] | 55-66 |
+| 1 | **C Programming Language** | Functions and Program Structure | [1] | 67-92 |
+| 1 | **C Programming Language** | Pointers and Arrays | [1] | 93-126 |
+| 1 | **C Programming Language** | Structures and Unions | [1] | 127-150 |
+| 1 | **C Programming Language** | Input and Output | [1] | 151-168 |
+| 1 | **C Programming Language** | C standard library functions / The UNIX system interface | [1] | 169-190 |
+| 2 | **C++ Programming Language** | Classes, Objects, Types, and Values | [2] | 59-88 |
+| 2 | **C++ Programming Language** | Computation: Expressions, Statements, Functions, vector class, Language features | [2] | 89-132 |
+| 2 | **C++ Programming Language** | Technicalities: Functions, Classes, etc. | [2] | 255-344 |
+| 2 | **C++ Programming Language** | Input and Output Streams | [2] | 345-410 |
+| 3 | **Java Programming Language** | OOP Concepts: class, object, enumerations, interface, polymorphism, annotations | [3] | 1-623 |
+| 3 | **Java Programming Language** | Generics, Java Collection Framework | [3] | — |
+| 3 | **Java Programming Language** | Byte/Char streams and I/O Streams | [3] | — |
+| 3 | **Java Programming Language** | Lambda and Streams | [3] | — |
+| 3 | **Java Programming Language** | Methods and Exceptions | [3] | — |
+
+**Bibliography CSIE 4:**
+
+| Ref. | Authors | Title |
+|------|---------|-------|
+| [1] | Brian W. Kernighan, Dennis M. Ritchie | *C Programming Language*, 2nd Edition, Prentice Hall, 1978 (Reprinted 2012), ISBN-13: 978-0131103627 |
+| [2] | Bjarne Stroustrup | *The C++ Programming Language*, Third Edition, Addison-Wesley Professional, 1997, ISBN 0-201-88954-4 |
+| [3] | Scott Selikoff, Jeanne Boyarsky | *OCP Oracle Certified Professional Java SE 17 Developer Study Guide*, Sybex/John Wiley & Sons, 2022, ISBN 978-1-119-86458-5 |
+
+---
+
+## 7. Documente necesare pentru dosar
 
 Înscrierea se face **exclusiv online** pe platforma **admitere.ase.ro**, încărcând copii în format `.pdf` sau `.jpeg/.jpg`. Fiecare document = **un singur fișier** (nu pagină cu pagină).
 
@@ -224,7 +302,7 @@ După afișarea rezultatelor, candidații admiși confirmă locul astfel:
 
 ---
 
-## 7. Competența lingvistică
+## 8. Competența lingvistică
 
 ### Testul online (22 iulie 2026)
 
@@ -273,7 +351,7 @@ Dacă ai un certificat recunoscut de ASE, ești scutit de testul online:
 
 ---
 
-## 8. Scutire taxă de înscriere
+## 9. Scutire taxă de înscriere
 
 Sunt scutiți de plata taxei de înscriere (o singură dată pe an):
 
