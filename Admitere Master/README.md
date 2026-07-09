@@ -190,11 +190,11 @@ Programele cu cod **CSIE 3** și **CSIE 4** susțin un **examen scris tip grilă
 
 | Ref. | Autori | Titlu |
 |------|--------|-------|
-| [1] | Lungu, I.; Bâra, A.; Bodea, C.; Botha, I.; Diaconița, V.; Florea, A.; Velicanu, A. | *Tratat de baze de date. Vol. I. Baze de date. Organizare, proiectare și implementare*, Editura ASE, București, 2011, ISBN 978-606-505-472-1 |
-| [2] | Lungu, I. | *Baze de date Oracle. Limbajul SQL*, Editura ASE, București, 2005, ISBN 973-594-684-X |
-| [3] | Bâra, A.; Botha, I.; Diaconița, V.; Lungu, I.; Velicanu, A. | *Baze de date. Limbajul PL/SQL*, Editura ASE, București, 2009, ISBN 978-606-505-263-5 |
-| [4] | Smeureanu, I.; Dârdală, M. | *Programarea în limbajul C/C++*, Editura CISON, București, 2004, ISBN 973-99725-7-8 |
-| [5] | Smeureanu, I.; Dârdală, M. | *Programarea orientată obiect în limbajul C++*, Editura CISON, București, 2002, ISBN 973-8301-06-8 |
+| [1] | Lungu, I.; Bâra, A.; Bodea, C.; Botha, I.; Diaconița, V.; Florea, A.; Velicanu, A. | [*Tratat de baze de date. Vol. I. Baze de date. Organizare, proiectare și implementare*](CSIE_3/Carti/Tratat%20de%20baze%20de%20date.%20Vol.%20I.%20Baze%20de%20date.%20Organizare%2C%20proiectare%20si%20implementare%20-%20Lungu%20et%20al.pdf), Editura ASE, București, 2011, ISBN 978-606-505-472-1 |
+| [2] | Lungu, I. | [*Baze de date Oracle. Limbajul SQL*](CSIE_3/Carti/Baze%20de%20date%20Oracle.%20Limbajul%20SQL%20-%20Lungu%20I.pdf), Editura ASE, București, 2005, ISBN 973-594-684-X |
+| [3] | Bâra, A.; Botha, I.; Diaconița, V.; Lungu, I.; Velicanu, A. | [*Baze de date. Limbajul PL/SQL*](CSIE_3/Carti/Baze%20de%20date.%20Limbajul%20PL-SQL%20-%20Bara%20et%20al.pdf), Editura ASE, București, 2009, ISBN 978-606-505-263-5 |
+| [4] | Smeureanu, I.; Dârdală, M. | [*Programarea în limbajul C/C++*](CSIE_3/Carti/Programarea%20in%20limbajul%20C-C%2B%2B%20-%20Smeureanu%20si%20Dardala.pdf), Editura CISON, București, 2004, ISBN 973-99725-7-8 |
+| [5] | Smeureanu, I.; Dârdală, M. | [*Programarea orientată obiect în limbajul C++*](CSIE_3/Carti/Programarea%20orientata%20obiect%20in%20limbajul%20C%2B%2B%20-%20Smeureanu%20si%20Dardala.pdf), Editura CISON, București, 2002, ISBN 973-8301-06-8 |
 
 ---
 
@@ -227,9 +227,9 @@ Programele cu cod **CSIE 3** și **CSIE 4** susțin un **examen scris tip grilă
 
 | Ref. | Authors | Title |
 |------|---------|-------|
-| [1] | Brian W. Kernighan, Dennis M. Ritchie | *C Programming Language*, 2nd Edition, Prentice Hall, 1978 (Reprinted 2012), ISBN-13: 978-0131103627 |
-| [2] | Bjarne Stroustrup | *The C++ Programming Language*, Third Edition, Addison-Wesley Professional, 1997, ISBN 0-201-88954-4 |
-| [3] | Scott Selikoff, Jeanne Boyarsky | *OCP Oracle Certified Professional Java SE 17 Developer Study Guide*, Sybex/John Wiley & Sons, 2022, ISBN 978-1-119-86458-5 |
+| [1] | Brian W. Kernighan, Dennis M. Ritchie | [*C Programming Language*](CSIE_4/Carti/C%20Programming%20Language%20-%20Kernighan%2C%20Ritchie.pdf), 2nd Edition, Prentice Hall, 1978 (Reprinted 2012), ISBN-13: 978-0131103627 |
+| [2] | Bjarne Stroustrup | [*The C++ Programming Language*](CSIE_4/Carti/The%20C%2B%2B%20Programming%20Language%20-%20Bjarne%20Stroustrup.pdf), Third Edition, Addison-Wesley Professional, 1997, ISBN 0-201-88954-4 |
+| [3] | Scott Selikoff, Jeanne Boyarsky | [*OCP Oracle Certified Professional Java SE 17 Developer Study Guide*](CSIE_4/Carti/OCP%20Oracle%20Certified%20Professional%20Java%20SE%2017%20Developer%20Study%20Guide%20-%20Selikoff%2C%20Boyarsky.pdf), Sybex/John Wiley & Sons, 2022, ISBN 978-1-119-86458-5 |
 
 ---
 
