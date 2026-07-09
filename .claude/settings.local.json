@@ -29,7 +29,9 @@
       "PowerShell(python -c \"import pdf2image; print\\('pdf2image ok'\\)\" 2>&1)",
       "PowerShell(python -c \"import fitz; print\\('PyMuPDF ok'\\)\" 2>&1)",
       "PowerShell(python \"C:\\\\Users\\\\Robert\\\\Desktop\\\\Examen-Licenta-Admitere-Master-CSIE\\\\ocr_subiecte.py\")",
-      "PowerShell(python \"C:\\\\Users\\\\Robert\\\\Desktop\\\\Examen-Licenta-Admitere-Master-CSIE\\\\transform_rezolvari.py\")"
+      "PowerShell(python \"C:\\\\Users\\\\Robert\\\\Desktop\\\\Examen-Licenta-Admitere-Master-CSIE\\\\transform_rezolvari.py\")",
+      "WebFetch(domain:ase.ro)",
+      "WebFetch(domain:www.ase.ro)"
     ]
   }
 }
