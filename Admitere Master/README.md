@@ -200,7 +200,9 @@ Programele cu cod **CSIE 3** și **CSIE 4** susțin un **examen scris tip grilă
 
 ### Cod CSIE 4 — Securitatea informatică (limba engleză)
 
-Program: Securitatea Informatică — Cybersecurity Master Program (www.ism.ase.ro)
+| Program | Site |
+|---------|------|
+| Securitatea Informatică — Cybersecurity Master Program | [ism.ase.ro](http://www.ism.ase.ro/) |
 
 | Nr. | Subject | Topics | Ref. | Pages |
 |-----|---------|--------|------|-------|
