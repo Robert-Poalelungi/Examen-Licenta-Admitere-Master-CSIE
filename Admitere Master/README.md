@@ -137,38 +137,78 @@ Programele cu cod **CSIE 3** și **CSIE 4** susțin un **examen scris tip grilă
 
 ## 6. Documente necesare pentru dosar
 
-Înscrierea se face **online** pe platforma **admitere.ase.ro**. Se încarcă în format electronic:
+Înscrierea se face **exclusiv online** pe platforma **admitere.ase.ro**, încărcând copii în format `.pdf` sau `.jpeg/.jpg`. Fiecare document = **un singur fișier** (nu pagină cu pagină).
 
-### Documente obligatorii pentru toți candidații
+> **Dosarele incomplete nu sunt acceptate.** Verificați statusul în platformă după finalizarea înscrierii.
 
-| # | Document |
-|---|----------|
-| 1 | **Diploma de bacalaureat** (sau echivalentă) — copie |
-| 2 | **Foaia matricolă** a studiilor liceale — copie |
-| 3 | **Diploma de licență** și **Suplimentul la diplomă** — copie *(sau adeverință de absolvire pentru promoția 2026)* |
-| 4 | **Certificat de naștere** — copie |
-| 5 | **Carte de identitate / Pașaport** — copie |
-| 6 | **Fotografie** recentă (tip buletin) |
-| 7 | **Certificat de căsătorie** (dacă numele diferă față de actele de studii) — copie |
-| 8 | **Dovada plății taxei de înscriere** (350 lei) |
+---
 
-### La confirmare (după afișarea rezultatelor — 25–28 iulie)
+### 6A. Absolvenți licență ASE — promoția 2026 *(Art. 20 alin. 1)*
 
-Candidații admiși trebuie să depună **în original**:
-- Diploma de bacalaureat + foaia matricolă
-- Diploma de licență + suplimentul la diplomă
-- **SAU** să achite **4.000 lei** (garanție, dacă diplomele nu sunt disponibile încă)
+Datele academice (note, medii) sunt preluate automat din baza de date ASE — **nu trebuie să încarci diploma de licență sau foaia matricolă**.
 
-> Absolvenții promoției **iulie 2026** pot depune adeverința de absolvire în locul diplomei de licență.
+| # | Document | Obligatoriu |
+|---|----------|-------------|
+| a | **Copie certificat de naștere** | ✅ DA |
+| b | **Copie carte de identitate** în termen de valabilitate *(sau CI provizorie / dovada depunerii pentru înlocuire / CI electronică + adeverință domiciliu)* | ✅ DA |
+| c | **Copie certificat de căsătorie** | doar dacă e cazul |
+| d | **Declarație pe propria răspundere — Anexa 7** *(completată automat la înscriere în platformă)* — prin care declari că: nu beneficiezi simultan de 2 locuri la buget la master; nu urmezi mai mult de 2 programe simultan; nu ai fost exmatriculat fără drept de reînmatriculare din ASE; declari câte semestre ai beneficiat de buget la masterate anterioare; ești de acord cu prelucrarea datelor | ✅ DA |
+| e | **Adeverință de la universitatea unde ai/ai avut masterat anterior**, cu precizarea formei de finanțare | doar dacă ai urmat alt masterat înainte |
+| f | **Dovada plății taxei de înscriere** prin virament bancar | doar dacă plătești prin virament *(plata online în platformă e automată)* |
+| g | **Copie adeverință medicală tip** — eliberată cu cel mult **6 luni** înainte de data înscrierii, de cabinet medical școlar/teritorial sau medicul de familie — din care să rezulte că ești apt pentru facultate | ✅ DA |
+| h | **Copie certificat de competență lingvistică** în limba de predare a programului ales | doar dacă ai certificat recunoscut (altfel susții testul online) |
+| i | Copie document apartenența la **minoritate națională** | doar dacă e cazul |
+| j | Copie document **protecție socială** | doar dacă e cazul |
+| k | Copie **certificat de orientare școlară/certificat handicap** valabil sau formular A5 de la medic specialist | doar dacă e cazul |
+| l | **Declarație grup vulnerabil** (pe propria răspundere) | doar dacă e cazul |
+| m | Copie document **scutire taxă de înscriere** (conform Art. 40) | doar dacă soliciți scutire |
+| n | **Declarație autenticitate documente — Anexa 8** *(pe propria răspundere că documentele digitale corespund originalelor)* | ✅ DA |
+| o | Alte documente specifice programelor cu **condiții speciale** (Anexa 4) | dacă e cazul |
 
-### Documente suplimentare (dacă este cazul)
+---
 
-| Situație | Document suplimentar |
-|---------|---------------------|
-| Scutire taxă de înscriere | Documente doveditoare (vezi secțiunea 8) |
-| Candidați cu dizabilități | Certificat de handicap |
-| Etnici români din afara granițelor | Documente de recunoaștere a originii etnice |
-| Candidați non-UE | Atestatul de recunoaștere a studiilor (CNRED) |
+### 6B. Toți ceilalți candidați *(Art. 20 alin. 3)* — absolvenți alte universități sau alte promoții
+
+| # | Document | Obligatoriu |
+|---|----------|-------------|
+| a | **Copie diplomă de licență** (sau echivalentă) — **SAU**, pentru absolvenții promoției 2026: **adeverință de absolvire a examenului de licență** cu mediile aritmetice ale anilor de studii, media examenului de licență și celelalte informații din OMEC nr. 4156/2020 | ✅ DA |
+| b | **Copie foaie matricolă** de la programul de licență **SAU suplimentul la diplomă** | ✅ DA |
+| c | **Copie diplomă de bacalaureat** (sau echivalentă) **+ foaia matricolă** a liceului absolvit | ✅ DA |
+| d | *(Dacă diploma de licență/bacalaureat e pierdută/distrusă/plastifiată)* — copii ale documentelor privind întocmirea duplicatului: declarație notarială, anunț Monitorul Oficial, adresă de la liceu/universitate | situație specială |
+| e | *(Dacă ai studiat în străinătate)* — copie **atestat/adeverință CNRED** (Consiliul Național de Recunoaștere și Echivalare a Diplomelor) + trimite actele pe email la **internationaladmission@ase.ro** înainte de înscriere | absolvenți străinătate |
+| f | **Copie certificat de naștere** | ✅ DA |
+| g | **Copie carte de identitate** în termen de valabilitate *(sau CI provizorie / dovada înlocuirii / CI electronică + adeverință domiciliu)* | ✅ DA |
+| h | **Copie certificat de căsătorie** | doar dacă e cazul |
+| i | **Declarație pe propria răspundere — Anexa 7** *(același conținut ca la 6A, pct. d)* | ✅ DA |
+| j | **Adeverință de la universitatea unde ai/ai avut masterat anterior**, cu precizarea formei de finanțare | doar dacă ai urmat alt masterat înainte |
+| k | **Dovada plății taxei de înscriere** prin virament bancar | doar dacă plătești prin virament |
+| l | **Copie adeverință medicală tip** — eliberată cu cel mult **6 luni** înainte, de cabinet medical sau medicul de familie | ✅ DA |
+| m | **Copie certificat de competență lingvistică** | dacă ai certificat recunoscut |
+| n | Copie document **minoritate națională** | dacă e cazul |
+| o | Copie document **protecție socială** | dacă e cazul |
+| p | Copie **certificat de orientare școlară/certificat handicap** valabil | dacă e cazul |
+| q | **Declarație grup vulnerabil** | dacă e cazul |
+| r | Copie document **scutire taxă de înscriere** (Art. 40) | dacă soliciți scutire |
+| s | **Declarație autenticitate documente — Anexa 8** | ✅ DA |
+| t | Alte documente specifice programelor cu **condiții speciale** (Anexa 4) | dacă e cazul |
+| u | *(Candidați UE/SEE/CE/UK fără CNP)* — trimite actele de studii la **internationaladmission@ase.ro** înainte de înscriere pentru echivalarea notelor | dacă e cazul |
+
+> **Acte în altă limbă decât română:** se încarcă și copii ale traducerilor în română, **legalizate**.
+
+---
+
+### 6C. Confirmarea locului (25–28 iulie 2026) *(Art. 28)*
+
+După afișarea rezultatelor, candidații admiși confirmă locul astfel:
+
+| Situație | Ce trebuie să faci | Termen |
+|----------|-------------------|--------|
+| **Loc la buget** | Depui **în original**: diploma de bacalaureat + foaia matricolă liceu + diploma de licență + suplimentul la diplomă *(sau adeverința de absolvire dacă ești promoția 2026)* | 25–28 iulie, Ma până la 14:00 |
+| **Loc la taxă** | Plătești **4.000 lei** electronic (prioritar în platforma admitere.ase.ro) | 25–28 iulie, Ma până la 14:00 |
+| **Candidat în așteptare** | Poți plăti 4.000 lei și/sau depune originalele pentru a intra pe locurile eliberate de cei de la buget/taxă | idem |
+| **Dacă nu faci nimic** | Ești declarat **respins**, locul se redistribuie | — |
+
+> ⚠️ **Important:** Taxa semestrială de școlarizare CSIE este **6.000 lei/semestru** (12.000 lei/an). Diferența față de 4.000 lei (adică **2.000 lei**) trebuie achitată **înainte de semnarea contractului de studii**, în primele 3 săptămâni ale semestrului I.
 
 ---
 
