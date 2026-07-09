@@ -16,7 +16,6 @@ Repo cu materiale pentru **examenul de licență CSIE** și **admiterea la maste
 └── 📁 Admitere Master/
     │   📄 README.md                      ← ghid complet admitere master (calendar, locuri,
     │                                        taxe, documente, tematică, bibliografie)
-    │   📄 Tematica_si_bibliografie_...pdf ← tematica oficială examen specialitate 2026
     │
     ├── 📁 CSIE_3/                        ← cod tematică concurs CSIE 3
     │   │                                    (Informatică economică, E-Business,
@@ -51,7 +50,6 @@ Repo cu materiale pentru **examenul de licență CSIE** și **admiterea la maste
 | Resursă | Link |
 |---------|------|
 | Ghid admitere (calendar, locuri, taxe, documente) | [Admitere Master/README.md](Admitere%20Master/README.md) |
-| Tematică examen specialitate (PDF oficial) | [Tematica examen specialitate](Admitere%20Master/Tematica_si_bibliografie_examen_specialitate.pdf) |
 | Teorie CSIE 3 (BD, SQL, PL/SQL, C, C++) | [CSIE_3/README.md](Admitere%20Master/CSIE_3/README.md) |
 | Rezolvări subiecte CSIE 3 (2019–2024) | [CSIE_3/Subiecte/README.md](Admitere%20Master/CSIE_3/Subiecte/README.md) |
 | Teorie CSIE 4 (C, C++, Java) | [CSIE_4/README.md](Admitere%20Master/CSIE_4/README.md) |
