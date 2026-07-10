@@ -18,7 +18,6 @@ WHERE d.id_departament NOT IN
 - c) generează eroare NOT IN
 - d) generează eroare (subcerere multi-row)
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -37,7 +36,6 @@ WHERE d.id_departament NOT IN
 - b) polimorfismul
 - c) compunerea
 - d) derivarea (moștenirea)
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -58,7 +56,6 @@ WHERE d.id_departament NOT IN
 - c) v_text VARCHAR2(20) DEFAULT SUBSTR('ORACLE',1,3);
 - d) v_nr NUMBER := TO_CHAR(SYSDATE, 'MM');
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -77,7 +74,6 @@ WHERE d.id_departament NOT IN
 - b) (p_param IN VARCHAR2(50))
 - c) (p_param OUT VARCHAR2 := 'anonim')
 - d) (p_param VARCHAR2)
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -98,7 +94,6 @@ WHERE d.id_departament NOT IN
 - c) al doilea eronat
 - d) primul supraîncarcă - unar, al doilea supraîncarcă - binar
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -117,7 +112,6 @@ WHERE d.id_departament NOT IN
 - b) va afișa TRUE/FALSE (recent)
 - c) va afișa doar comenzile recente
 - d) tipul BOOLEAN nu e compatibil cu SQL
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -138,7 +132,6 @@ WHERE d.id_departament NOT IN
 - c) conține cel puțin o metodă virtual pură
 - d) conține cel puțin o metodă virtuală
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -157,7 +150,6 @@ WHERE d.id_departament NOT IN
 - b) 105
 - c) eroare (constructor privat)
 - d) 00
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -183,7 +175,6 @@ WHERE d.id_departament NOT IN
 - c) 2, 4 și 5
 - d) 1 și 2
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -202,7 +193,6 @@ WHERE d.id_departament NOT IN
 - b) INSERT-ul se salvează automat
 - c) INSERT generează eroare (email NULL)
 - d) ROLLBACK anulează DROP VIEW
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -227,7 +217,6 @@ WHERE calcul_salariu(id_departament) > 10000;
 - b) eroare (lipsă join)
 - c) nu poate fi apelată în WHERE (funcție de grup)
 - d) va apela funcția și va afișa departamentele cu salariul mediu > 10000
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -254,7 +243,6 @@ for (int i=0; i<5; i++)
 - c) 5
 - d) de 5 ori "FAIL"
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -273,7 +261,6 @@ for (int i=0; i<5; i++)
 - b) SELECT TRUNC(TO_DATE(...),'YEAR') FROM dual;
 - c) SELECT DECODE(1+2,3,'DA','NU') FROM dual;
 - d) SELECT SUM(DECODE(LENGTH('ORACLE'),6,1,0)) FROM dual;
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -304,7 +291,6 @@ int main() {
 - c) 34
 - d) 22
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -323,7 +309,6 @@ int main() {
 - b) CBA
 - c) A
 - d) ABC
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -344,7 +329,6 @@ int main() {
 - c) fără output
 - d) la infinit
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -363,7 +347,6 @@ int main() {
 - b) ::
 - c) >
 - d) !
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -384,7 +367,6 @@ int main() {
 - c) eroare AVG
 - d) eroare COUNT
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -403,7 +385,6 @@ int main() {
 - b) clasa e instanță a obiectelor sale
 - c) clasa e instanță a tipului struct
 - d) obiectul este o instanță din clasa sa
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -424,7 +405,6 @@ int main() {
 - c) 2
 - d) 121
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -443,7 +423,6 @@ int main() {
 - b) afișează B
 - c) afișează A
 - d) utilizează incorect boolean
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -469,7 +448,6 @@ cu constructor de copiere care afișează "Copiere".
 - c) Copiere Copiere Copiere
 - d) Copiere Copiere
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -488,7 +466,6 @@ cu constructor de copiere care afișează "Copiere".
 - b) doar VARCHAR2 → CHAR
 - c) doar NUMBER
 - d) doar TIMESTAMP → anul curent
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -509,7 +486,6 @@ cu constructor de copiere care afișează "Copiere".
 - c) actualizează produsele cu pret_min > min(pret) în categorii cu produse "monitor"
 - d) eroare IN
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -528,7 +504,6 @@ cu constructor de copiere care afișează "Copiere".
 - b) eroare EXIT din FOR
 - c) eroare var
 - d) toți angajații
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -549,7 +524,6 @@ cu constructor de copiere care afișează "Copiere".
 - c) mai întâi baza, apoi derivata
 - d) aleatoare
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -568,7 +542,6 @@ cu constructor de copiere care afișează "Copiere".
 - b) SUBSTR e funcție de grup
 - c) IonI7
 - d) CONCAT nu merge cu ||
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -589,7 +562,6 @@ cu constructor de copiere care afișează "Copiere".
 - c) UNION ALL
 - d) INTERSECT
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -608,7 +580,6 @@ cu constructor de copiere care afișează "Copiere".
 - b) ALTER TABLE ... ADD COLUMN ...
 - c) ALTER TABLE table_name ADD column_name column_definition;
 - d) MODIFY TABLE ADD ...
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -633,7 +604,6 @@ int main() { B s(10, 3.14); cout << get_a(s); return 0; }
 - b) 0
 - c) eroare friend
 - d) 10
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -660,7 +630,6 @@ int main() { B s(10, 3.14); cout << get_a(s); return 0; }
 - c) 1 și 2
 - d) 3 și 4
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -668,6 +637,7 @@ int main() { B s(10, 3.14); cout << get_a(s); return 0; }
 
 **Explicație:** Linia 1 crează 5 obiecte pe stivă. Linia 3 crează 5 obiecte pe heap cu new. Linia 4 alocă memorie dar nu apelează constructori (malloc nu construiește obiecte). Linia 2 e un array de pointeri, nu 5 obiecte. Conform baremului oficial: b) 1, 3 și 4.
 
+</details>
 ---
 
 ### Întrebarea 2
@@ -678,6 +648,9 @@ int main() { B s(10, 3.14); cout << get_a(s); return 0; }
 - b) afișează B
 - c) eroare cursor implicit
 - d) afișează A
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: d) blocul PL/SQL ruleaza cu succes si afiseaza A**
 
@@ -698,7 +671,6 @@ int main() { int a[5]={8,2,5}; f(a,5); print(a,5); }
 - b) 18 2 5 0 10
 - c) 18 2 5 2 10
 - d) 8 2 5 8 10
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -726,7 +698,6 @@ p = "Examen"; //3
 - c) 2+3
 - d) 1
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -745,7 +716,6 @@ p = "Examen"; //3
 - b) 100
 - c) eroare acces b
 - d) eroare friend
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -766,7 +736,6 @@ p = "Examen"; //3
 - c) 10
 - d) 1010
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -786,7 +755,6 @@ p = "Examen"; //3
 - c) 3
 - d) 0
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -794,6 +762,7 @@ p = "Examen"; //3
 
 **Explicație:** Contorul crește la copy constructor. t2=new A(*t1) => copy => contor=1. A t3 = *t1 => copy => contor=2. A t4; t4=3 folosește constructorul cu int, nu copy. Barem: c) 3 (dacă t4=3 e considerat conversie prin copy).
 
+</details>
 ---
 
 ### Întrebarea 8
@@ -804,6 +773,9 @@ p = "Examen"; //3
 - b) NVL(LENGTH(SUBSTR(nume,1,5)),0)
 - c) TO_CHAR(ROUND(data,'MONTH'),'Mon')
 - d) DECODE(TO_CHAR(...),13,data-2,data+2)
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: b) NVL(LENGTH(SUBSTR(nume_angajat,1,5)),0)**
 
@@ -820,7 +792,6 @@ p = "Examen"; //3
 - b) cheia primară din R1 poate fi NULL
 - c) cheia primară din părinte poate fi non-unică
 - d) R1 și R2 aceeași extensie
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -841,7 +812,6 @@ p = "Examen"; //3
 - c) UPDATE CONSTRAINT
 - d) UPDATE TABLE
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -860,7 +830,6 @@ p = "Examen"; //3
 - b) VARCHAR2 → primele caractere
 - c) doar NUMBER
 - d) NUMBER și DATE
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -881,7 +850,6 @@ p = "Examen"; //3
 - c) valoare nedefinită
 - d) eroare compilare
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -900,7 +868,6 @@ p = "Examen"; //3
 - b) doar laptop-uri
 - c) eroare subcerere
 - d) produsele cu pret>2500 în categoriile laptop-urilor
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -921,7 +888,6 @@ p = "Examen"; //3
 - c) 30,40
 - d) 105,70
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -929,6 +895,7 @@ p = "Examen"; //3
 
 **Explicație:** s e static, păstrat între apeluri. Primul apel: max(10,30,20)=30. Al doilea: pornind de la s=30, max(30,10,5,15,40)=40.
 
+</details>
 ---
 
 ### Întrebarea 15
@@ -939,6 +906,9 @@ p = "Examen"; //3
 - b) de două ori
 - c) de trei ori
 - d) niciodată, eroare
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: b) De doua ori**
 
@@ -955,7 +925,6 @@ p = "Examen"; //3
 - b) 10 20 20 20 20 20 10
 - c) 10 10 11 12 13 14 15
 - d) 10 20 21 22 23 24 10
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -976,7 +945,6 @@ p = "Examen"; //3
 - c) funcția nu se poate apela
 - d) produs cartezian
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -995,7 +963,6 @@ p = "Examen"; //3
 - b) lipsă GROUP BY
 - c) număr mediu pe fiecare departament
 - d) număr angajați și salariu mediu din dep 50
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1016,7 +983,6 @@ p = "Examen"; //3
 - c) eroare x inaccesibil
 - d) 0
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1035,7 +1001,6 @@ p = "Examen"; //3
 - b) join imposibil (lipsă FK)
 - c) eroare condiție HAVING
 - d) creează view cu clienți cu ≥5 comenzi până în 2023
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1056,7 +1021,6 @@ p = "Examen"; //3
 - c) 0
 - d) eroare
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1075,7 +1039,6 @@ p = "Examen"; //3
 - b) proiecție
 - c) selecție
 - d) concatenare
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1096,7 +1059,6 @@ p = "Examen"; //3
 - c) eroare var
 - d) top 3 salarii
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1115,7 +1077,6 @@ p = "Examen"; //3
 - b) (3,7)
 - c) eroare operator+
 - d) (2,6)
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1136,7 +1097,6 @@ p = "Examen"; //3
 - c) join fără FK imposibil
 - d) eroare ROUND
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1155,7 +1115,6 @@ p = "Examen"; //3
 - b) TO_NUMBER
 - c) NVL
 - d) ROUND
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1176,7 +1135,6 @@ p = "Examen"; //3
 - c) compară
 - d) eroare lvalue
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1195,7 +1153,6 @@ p = "Examen"; //3
 - b) AB-A-B
 - c) AB-A
 - d) AB-B-A
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1216,7 +1173,6 @@ p = "Examen"; //3
 - c) nu poate fi apelată în SELECT
 - d) NULL dacă nu există
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1235,7 +1191,6 @@ p = "Examen"; //3
 - b) nu se poate apela (UPDATE)
 - c) afișează id și luni de la plasare
 - d) nu compilează (UPDATE)
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1258,7 +1213,6 @@ p = "Examen"; //3
 - c) CONNECT BY
 - d) DELETE
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1277,7 +1231,6 @@ p = "Examen"; //3
 - b) intersecție
 - c) jonctiune
 - d) produs cartezian
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1298,7 +1251,6 @@ p = "Examen"; //3
 - c) f1, f2, f3
 - d) f1(a)
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1318,7 +1270,6 @@ p = "Examen"; //3
 - c) primul angajat
 - d) eroare NOTFOUND
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1337,7 +1288,6 @@ p = "Examen"; //3
 - b) rulează, afișează venit sau 0 (dacă dep 50 nu există)
 - c) eroare dacă nu există
 - d) rulează, nu afișează nimic dacă nu există
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1360,7 +1310,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - c) 3500
 - d) eroare depășire stivă
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1379,7 +1328,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - b) > 10 zile
 - c) număr de zile
 - d) eroare
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1400,7 +1348,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - c) depășire stivă
 - d) 1 3 5 7 9
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1419,7 +1366,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - b) SELECT next_day('SUNDAY') FROM sysdate;
 - c) SELECT last_day(sysdate,'SUNDAY') FROM dual;
 - d) SELECT next_day(sysdate,'SUNDAY') FROM dual;
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1440,7 +1386,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - c) 5 7 9
 - d) 3 5 7 9
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1459,7 +1404,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - b) 10
 - c) 11
 - d) 1
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1480,7 +1424,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - c) s+=a[i][i]+a[n-i-1][n-i-1];
 - d) s+=a[i][n-i-1]+a[n-i-1][i];
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1499,7 +1442,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - b) LCT
 - c) pot fi variabile/constante
 - d) pot avea parametri
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1520,7 +1462,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - c) 5 5 5 5 5
 - d) FAIL FAIL FAIL FAIL FAIL
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1539,7 +1480,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - b) EXAMENMASTER
 - c) XAMEN ASTER 2022
 - d) eroare lvalue
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1560,7 +1500,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - c) eroare
 - d) eroare LIKE
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1579,7 +1518,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - b) 2
 - c) 12
 - d) 6
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1600,7 +1538,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - c) toate
 - d) primele 4
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1619,7 +1556,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - b) valoare medie a produselor cu ≥3 comenzi
 - c) valoare medie a comenzilor cu ≥3 produse
 - d) eroare ROUND
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1640,7 +1576,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - c) eroare
 - d) 8 6 4 2
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1659,7 +1594,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - b) proiecția, negația, produsul cartezian sunt operatori
 - c) operatori din algebra relațională
 - d) selecția, conjuncția, jonctiunea sunt din calculul relațional
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1680,7 +1614,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - c) 10
 - d) 3
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1699,7 +1632,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - b) rulează, nu afișează nimic
 - c) toți
 - d) eroare GROUP BY
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1720,7 +1652,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - c) tropo
 - d) topor
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1739,7 +1670,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - b) TO_DATE
 - c) INSTR
 - d) NVL
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1760,7 +1690,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - c) 1
 - d) 0
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1780,7 +1709,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - c) 0
 - d) eroare
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1788,6 +1716,7 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 
 **Explicație:** 9*3=27, 27/2=13 (integer), 13*2=26, 26/3=8 (integer). Barem oficial: d — dar de fapt răspunsul corect matematic ar fi 8 (integer arithmetic). Fără cast la double, evaluarea e integer. Barem indica d.
 
+</details>
 ---
 
 ### Întrebarea 28
@@ -1799,10 +1728,14 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - c) eroare sysdate
 - d) angajați din luna curentă în departamente în care există angajați cu salariul > mediu
 
+<details>
+<summary>🔍 Răspuns și explicație</summary>
+
 **Răspuns corect: d)** *(barem b)*
 
 **Explicație:** Subcererea returnează departamentele care au CEL PUȚIN un angajat cu salariul > mediu. Se majorează angajații din luna curentă din acele departamente.
 
+</details>
 ---
 
 ### Întrebarea 29
@@ -1813,6 +1746,9 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - b) cursor implicit
 - c) lipsă buclă
 - d) angajatul cu cel mai mare salariu
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: d) se afiseaza numele angajatului cu cel mai mare salariu**
 
@@ -1830,7 +1766,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 - c) 0
 - d) valoare nedefinită
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1846,7 +1781,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 ### Întrebarea 1
 **Cerința:** Inversare șir "master" cu buclă for cu bug (j=strlen(p)-1 nu strlen(p)-1).
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1859,7 +1793,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 
 ### Întrebarea 2
 **Cerința:** f(int*a,int n) { *a+=*(a+n-2)+=10; } a={10,20,30}; n=SIZE(a) — dar #define nu are ; (bug); f(a,5).
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1874,7 +1807,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 ### Întrebarea 3
 **Cerința:** SELECT id, ROUND(AVG(cant*pret)) FROM rand GROUP BY id_comanda HAVING COUNT(id_produs)>=3;
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1887,7 +1819,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 
 ### Întrebarea 4
 **Cerința:** Funcții C care returnează răsturnatul unui număr.
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1902,7 +1833,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 ### Întrebarea 5
 **Cerința:** struct st { int x; struct st next; }; — membru de tip struct NU pointer.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1915,7 +1845,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 
 ### Întrebarea 6
 **Cerința:** int a[5]={10}; print a[0..4];
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1930,7 +1859,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 ### Întrebarea 7
 **Cerința:** for i<10: if(!i%3) print continue; else print break;
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1943,7 +1871,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 
 ### Întrebarea 8
 **Cerința:** f(a,b) { if(a<b) return f(a+2, b+1); else return a+b; } f(1544, 2152)?
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -1958,7 +1885,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 ### Întrebarea 9
 **Cerința:** CREATE VIEW clienti+comenzi HAVING COUNT<10, WHERE EXTRACT(YEAR)<2021.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1972,7 +1898,6 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 ### Întrebarea 10
 **Cerința:** SELECT sysdate INTO data FROM dual WHERE data IS NULL; EXCEPTION NO_DATA_FOUND print v.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -1980,19 +1905,27 @@ Notă: barem oficial poate indica altă variantă în funcție de interpretare. 
 
 Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE data IS NULL e adevărată. Se selectează sysdate. Rezultat: data curentă.
 
+</details>
 ---
 
 ### Întrebarea 11
 **Cerința:** for cu switch; case 0: i+=10; continue; case 10: i+=10; break; case 20/30/default: i+=10.
 
+<details>
+<summary>🔍 Răspuns și explicație</summary>
+
 **Răspuns corect: a) 50** *(dar în listă apare "50" ca ans corect)*
 
 **Explicație:** Analiza: i=0 → case 0: i=10, continue → i+=10=20. case 20: i=30, i=40 (fall-through default). break. print 40. i+=10=50. case 50 → default: i=60. print 60. Barem: 50 (probabil single print). Vezi barem oficial.
 
+</details>
 ---
 
 ### Întrebarea 12
 **Cerința:** CREATE FUNCTION cu parametru id_angajat.angajati%TYPE (invers).
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: a) se genereaza o eroare deoarece parametrul functiei este incorect specificat**
 
@@ -2003,7 +1936,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 13
 **Cerința:** Care afirmație despre normalizare nu este adevărată?
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2018,7 +1950,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 14
 **Cerința:** Opțiune pentru ștergerea tabelei.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2031,7 +1962,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 15
 **Cerința:** Cursori impliciți PL/SQL.
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2046,7 +1976,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 16
 **Cerința:** UPDATE cu WHERE EXTRACT(year, data_angajare) = EXTRACT(year, sysdate)-1 AND id_functie IN (SELECT id_functie WHERE salariul < AVG).
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2059,7 +1988,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 17
 **Cerința:** În PL/SQL, pentru DROP TABLE folosim:
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2074,7 +2002,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 18
 **Cerința:** char str1[]="Examen"; char str2[]={'E','x','a','m','e','n'}; sizeof(str1)?sizeof(str2)?
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2088,16 +2015,19 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 19
 **Cerința:** SELECT WHERE categorie IN (SELECT ... LIKE '%laptop%') AND pret_lista>100.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: a) afiseaza produsele care au pret_lista mai mare de 100 si se afla in aceleasi categorii cu produsele care contin in denumire cuvantul "laptop"**
 
+</details>
 ---
 
 ### Întrebarea 20
 **Cerința:** union u {int x; char s[4];}; t.x=0; t.s[0]='1'; t.s[1]='1'; t.s[3]='1'; printf("%s",t.s);
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: b) Se va afisa 11**
 
@@ -2108,7 +2038,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 21
 **Cerința:** union s {int x; int y;}; swap(t): int tmp=t.x; t.x=t.y; t.y=tmp; main: t.x=1, t.y=2; swap(t); print t.x, t.y;
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2123,7 +2052,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 22
 **Cerința:** WHERE salariul<5000 OR salariul>10000; care afirmație e falsă?
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2136,7 +2064,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 23
 **Cerința:** WHILE cursor1%FOUND LOOP FETCH...
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2151,7 +2078,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 24
 **Cerința:** int f(int*x, int y) {*x-=y; y+=*x; *x=y-*x; return *x>y?*x:y;} main: j=5, k=10; l = f(&j,k)==f(&k,j); print j,k,l;
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2164,7 +2090,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 25
 **Cerința:** Similar cu 2023 Q14 dar cu s += v>s ? v-s : 0.
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2179,16 +2104,19 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 26
 **Cerința:** SELECT COUNT+AVG INTO nr,sal FROM angajati WHERE id_dep=50.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: a) blocul va afisa numarul de angajati si salariul mediu din departamentul 50**
 
+</details>
 ---
 
 ### Întrebarea 27
 **Cerința:** Funcții nested cu static int y=2; y+=2; x+=2; f(x)+g(x) unde x global=3.
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: c) 47**
 
@@ -2200,16 +2128,19 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 28
 **Cerința:** Restricția referențială.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: c) un atribut din R1 care are valori definite pe acelasi domeniu ca si cheia primara a lui R2 are rolul de a modela asocierea dintre cele doua relatii**
 
+</details>
 ---
 
 ### Întrebarea 29
 **Cerința:** Funcție care NU poate fi folosită direct în atribuire PL/SQL.
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: a) MAX**
 
@@ -2220,7 +2151,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 30
 **Cerința:** int i=5; goto LOOP; for(i=0;i<10;i++) { print i; LOOP: continue; }
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2237,7 +2167,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 1
 **Cerința:** int x=5,y=10,z=15; x=y<=z; print x;
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2250,7 +2179,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 2
 **Cerința:** suma_swap similar cu 2021 Q24.
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2265,7 +2193,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 3
 **Cerința:** Manipulare pointeri la string-uri.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2278,7 +2205,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 4
 **Cerința:** int x[]={10,20,30,40}; p=(int*)(&x+1); print *(p-2);
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2293,7 +2219,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 5
 **Cerința:** Parametru formal pentru inițializare matrice diagonal.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2306,7 +2231,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 6
 **Cerința:** switch cu fallthrough case 0/5/break, case 10/15/default.
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2321,7 +2245,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 7
 **Cerința:** f(a): if(a<12) return f(f(a+2)); else return a-1;
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2334,7 +2257,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 8
 **Cerința:** g cu static y=2. f(x)+g(x) cu x global.
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2349,7 +2271,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 9
 **Cerința:** union t.x=0; t.arr[1]='G'; t.arr[2]='O'; t.arr[3]='L'; print string.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2362,7 +2283,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 10
 **Cerința:** Inversare "noroc" cu buclă i<j fără j inițializat corect (j=strlen(p) în loc de -1).
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2377,7 +2297,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 11
 **Cerința:** `printf("%d", 045);`
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2391,7 +2310,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 12
 **Cerința:** int x=8; print x++, x<<2, x>>1;
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2399,10 +2317,14 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 **Explicație:** Comportament nedefinit (order of evaluation). Compilatorul poate produce a sau b.
 
+</details>
 ---
 
 ### Întrebarea 13
 **Cerința:** Recursivă f(v,k) returnează minimul.
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: a) Elementul minim din vectorul v**
 
@@ -2413,7 +2335,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 14
 **Cerința:** Static int t; f(x,y) { t+=x+y; return t; } print f(5,6); print f(7,8);
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2428,7 +2349,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 15
 **Cerința:** va_args cu s += v>s ? v-s : 0. f(3,3,20,3); f(2,10,2,30,4).
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2442,37 +2362,52 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 16
 **Cerința:** Restricția referențială.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: a) un atribut din R1 care are valori definite pe acelasi domeniu ca si cheia primara a lui R2 are rolul de a modela asocierea dintre cele doua relatii**
 
+</details>
 ---
 
 ### Întrebarea 17
 **Cerința:** Normalizare — afirmație neadevărată.
 
+<details>
+<summary>🔍 Răspuns și explicație</summary>
+
 **Răspuns corect: a) se transforma mai multe relatii cu o structura mai simpla, in relatii mai complexe**
 
+</details>
 ---
 
 ### Întrebarea 18
 **Cerința:** Finalizare tranzacție.
 
+<details>
+<summary>🔍 Răspuns și explicație</summary>
+
 **Răspuns corect: a) COMMIT**
 
+</details>
 ---
 
 ### Întrebarea 19
 **Cerința:** CREATE VIEW cu HAVING COUNT>=3.
 
+<details>
+<summary>🔍 Răspuns și explicație</summary>
+
 **Răspuns corect: a) crearea unei tabele virtuale... clientii care au incheiat cel putin 3 comenzi**
 
+</details>
 ---
 
 ### Întrebarea 20
 **Cerința:** WHERE salariul NOT BETWEEN 5000 AND 10000. Care afirmație e falsă?
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: a) se implementeaza operatorul de diferenta**
 
@@ -2484,23 +2419,30 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 21
 **Cerința:** UPDATE cu EXTRACT(year)=year-1 AND id_functie IN (...) — angajați anul trecut.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: a) se majoreaza salariile persoanelor angajate anul trecut, indiferent de luna, daca acestea detin in prezent o functie similara cu angajatii care au salariul mai mic decât salariul mediu**
 
+</details>
 ---
 
 ### Întrebarea 22
 **Cerința:** SELECT nr_comanda, ROUND(AVG(cantitate)) FROM Rand_Comenzi GROUP BY nr_comanda ORDER BY 2;
 
+<details>
+<summary>🔍 Răspuns și explicație</summary>
+
 **Răspuns corect: a) se afiseaza cantitatea medie comandata din fiecare comanda ordonat crescator dupa cantitatea medie**
 
+</details>
 ---
 
 ### Întrebarea 23
 **Cerința:** Trei versiuni SELECT cu extract, to_char, to_date.
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: a) instructiunile I1 si I2 returnează același rezultat**
 
@@ -2512,23 +2454,30 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 24
 **Cerința:** Cursori impliciti.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: a) sunt automat inchisi dupa ce instructiunea a fost executata**
 
+</details>
 ---
 
 ### Întrebarea 25
 **Cerința:** DROP TABLE din PL/SQL.
 
+<details>
+<summary>🔍 Răspuns și explicație</summary>
+
 **Răspuns corect: a) EXECUTE IMMEDIATE**
 
+</details>
 ---
 
 ### Întrebarea 26
 **Cerința:** Funcție SQL care NU se folosește în PL/SQL.
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: a) DECODE**
 
@@ -2539,7 +2488,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 27
 **Cerința:** SELECT sysdate-30 INTO data WHERE 1=2; EXCEPTION NO_DATA_FOUND print v.
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2554,23 +2502,30 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 28
 **Cerința:** WHILE cursor1%FOUND LOOP — după OPEN.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: a) blocul se executa, dar nu afiseaza nimic**
 
+</details>
 ---
 
 ### Întrebarea 29
 **Cerința:** SELECT COUNT+AVG INTO... WHERE id_dep=50.
 
+<details>
+<summary>🔍 Răspuns și explicație</summary>
+
 **Răspuns corect: a) blocul va afisa numarul de angajati si salariul mediu din departamentul 50**
 
+</details>
 ---
 
 ### Întrebarea 30
 **Cerința:** SELECT id_dep, SUM INTO... FROM angajati GROUP BY id_dep — mai multe rânduri.
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: a) blocul declanseaza o exceptie deoarece interogarea returneaza mai multe randuri**
 
@@ -2584,16 +2539,19 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 1
 **Cerința:** DECLARE nume_complet; SELECT nume||' '||prenume INTO nume_complet WHERE id_angajat=101.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: c) blocul va afisa numele complet al angajatului cu id_angajat = 101 (daca exista)**
 
+</details>
 ---
 
 ### Întrebarea 2
 **Cerința:** UPDATE angajati SET salariul=3500 WHERE data_angajare = EXTRACT(MONTH FROM sysdate);
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: c) comanda nu ruleaza**
 
@@ -2605,23 +2563,30 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 3
 **Cerința:** Programul C recursiv care tipărește 97531.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: b) tipareste: 97531**
 
+</details>
 ---
 
 ### Întrebarea 4
 **Cerința:** SELECT cu HAVING count(1)>=3 ORDER BY count(1) DESC.
 
+<details>
+<summary>🔍 Răspuns și explicație</summary>
+
 **Răspuns corect: b) interogarea va afisa valoarea totala a comenzilor pentru fiecare produs care a fost comandat de cel putin 3 ori**
 
+</details>
 ---
 
 ### Întrebarea 5
 **Cerința:** swap prin valoare — nu funcționează.
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: c) 10,20**
 
@@ -2632,7 +2597,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 6
 **Cerința:** UPDATE cu sysdate!=sysdate (fals), rowcount, rollback, exception.
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2647,7 +2611,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 7
 **Cerința:** switch fără break-uri cu fallthrough.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2655,10 +2618,14 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 **Explicație:** Analizând programul: switch(2) → case 2: print B; case 3: print C; case 4: print D; default: print E. Fără break, toate se execută. Barem: b.
 
+</details>
 ---
 
 ### Întrebarea 8
 **Cerința:** Afirmație falsă despre join-uri.
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: c) pentru a realiza o jonctiune intre doua sau mai multe tabele trebuie sa fie declarate chei externe**
 
@@ -2669,7 +2636,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 9
 **Cerința:** Macro cu continue în do while(0) — continue afectează bucla exterioară.
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2684,7 +2650,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 10
 **Cerința:** `int var = 0110; printf("%d", var);`
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2697,7 +2662,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 11
 **Cerința:** DECLARE v CHAR(2):='ok';
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2712,7 +2676,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 12
 **Cerința:** SELECT nume WHERE salariul <= ANY (SELECT salariul FROM angajati);
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2726,7 +2689,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 13
 **Cerința:** IF n<1 (n neinițializat NULL) — NULL<1 e NULL, false.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2734,33 +2696,51 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 **Explicație:** NULL<1 nu e nici true nici false; ELSE se execută. NVL('B','E')='B'. De fapt ar afișa B. Barem indică b. Verificare barem: b — ruleaza si afiseaza E.
 
+</details>
 ---
 
 ### Întrebarea 14
 **Cerința:** SELECT 2 UNION ALL SELECT 2 UNION ... SELECT 1;
 
+<details>
+<summary>🔍 Răspuns și explicație</summary>
+
+**Răspuns corect:** *(sintaxă incompletă în OCR — nu a putut fi extrasă)*
+
 **Explicație:** Sintaxă incompletă în OCR. Barem: (probabil 3 sau 5).
 
+</details>
 ---
 
 ### Întrebarea 15
 **Cerința:** DECLARE i PLS_INTEGER; WHILE i<30 — i neinițializat NULL.
 
+<details>
+<summary>🔍 Răspuns și explicație</summary>
+
 **Răspuns corect: c) blocul contine o eroare si nu ruleaza** *(barem: d — declanseaza exceptie)*
 
 **Explicație:** NULL<30 e NULL, WHILE nu intră. Sau throw exception. Barem: d.
 
+</details>
 ---
 
 ### Întrebarea 16
 **Cerința:** DROP TABLE din PL/SQL.
 
+<details>
+<summary>🔍 Răspuns și explicație</summary>
+
 **Răspuns corect: b) EXECUTE IMMEDIATE**
 
+</details>
 ---
 
 ### Întrebarea 17
 **Cerința:** WHERE nume LIKE '%a_';
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: d) interogarea va afisa doar angajatii al caror nume contine pe penultima pozitie litera a**
 
@@ -2771,7 +2751,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 18
 **Cerința:** int a=5,b=6,c=7; print !((b+c)>(a+10));
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2786,7 +2765,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 19
 **Cerința:** sizeof(union {int i; char c;}).
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2799,7 +2777,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 20
 **Cerința:** int n=0; while(1==1) if(n>3) break; else n=n+1;
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2814,16 +2791,19 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 21
 **Cerința:** SELECT id_produs, TRUNC(AVG(pret*cantitate)) FROM rand_comenzi GROUP BY id_produs ORDER BY 2;
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: a) se afiseaza valoarea comandata din fiecare produs ordonat crescator dupa valoare**
 
+</details>
 ---
 
 ### Întrebarea 22
 **Cerința:** for i<5 { static a=0; int b=0; a++; b++; print a,b; }
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: b) 1 1 2 1 3 1 4 1 5 1**
 
@@ -2835,16 +2815,19 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 23
 **Cerința:** Tabela în FN3.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: b) este in FN2 si atributele non-cheie nu sunt dependente tranzitiv de cheia primara**
 
+</details>
 ---
 
 ### Întrebarea 24
 **Cerința:** Tip de date pentru coloană SQL-Oracle care NU se poate.
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: b) PLS_INTEGER**
 
@@ -2856,7 +2839,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 25
 **Cerința:** f cu duplicate elimination din vector.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2864,10 +2846,14 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 **Explicație:** Vector 1,2,3,3,4,5,6. Eliminare duplicate → 6 elemente. Barem: 7;4 (n rămâne 7 dacă nu se modifică, s=4 unique count?). Verificare barem: c.
 
+</details>
 ---
 
 ### Întrebarea 26
 **Cerința:** int x=7; print x, x<<2, x>>1;
+
+<details>
+<summary>🔍 Răspuns și explicație</summary>
 
 **Răspuns corect: a) 7,28,3**
 
@@ -2878,7 +2864,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 27
 **Cerința:** int i=1024; for(;i;i>>=1) print "Test";
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>
@@ -2893,7 +2878,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 28
 **Cerința:** int v[]={1,2,3,4}; print *(v+1);
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2907,7 +2891,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 ### Întrebarea 29
 **Cerința:** Recursivă sum(n,i,a) fără să adune. Return 0.
 
-
 <details>
 <summary>🔍 Răspuns și explicație</summary>
 
@@ -2920,7 +2903,6 @@ Notă: analiza precisă — variabila 'data' e locală, NULL. Condiția WHERE da
 
 ### Întrebarea 30
 **Cerința:** P(a,&b): *b*=a; a+=*b; return a+*b; a=7,b=7; print P(a,&b), a, b;
-
 
 <details>
 <summary>🔍 Răspuns și explicație</summary>

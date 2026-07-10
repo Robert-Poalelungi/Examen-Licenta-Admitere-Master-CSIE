@@ -11,7 +11,6 @@
 - c. string1 = CBAD, string2 = CBA
 - d. string1 = DCBA, string2 = ABC
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -30,7 +29,6 @@
 - b. array size = 4, string length = 4
 - c. array size = 4, string length = 2
 - d. array size = 2, string length = 2
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -51,7 +49,6 @@
 - c. m=8
 - d. 'm=5
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -70,7 +67,6 @@
 - b. result = 18
 - c. result = 15
 - d. result = 10
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -91,7 +87,6 @@
 - c. result = 4
 - d. result = -1
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -110,7 +105,6 @@
 - b. AOBC0
 - c. ABC
 - d. BC
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -131,7 +125,6 @@
 - c. *pa = 10
 - d. *pa = 65
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -150,7 +143,6 @@
 - b. *pa=B, *p2a=A
 - c. *pa=C, *p2a=C
 - d. *pa=A, *p2a=C
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -171,7 +163,6 @@
 - c. 5,5 / 4,7
 - d. 7,5 / 4,7
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -191,7 +182,6 @@
 - c. -12030
 - d. -123.0
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -199,6 +189,7 @@
 
 **Explanation:** atoi stops at first non-digit or embedded '\0'; here it reads "-12".
 
+</details>
 ---
 
 ### Question 11
@@ -209,6 +200,9 @@
 - b. Dacia
 - c. empty string
 - d. compile error
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: d) compile error**
 
@@ -225,7 +219,6 @@
 - b. first operand not the same type as the class
 - c. access private attributes
 - d. chained calls
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -251,7 +244,6 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - c. ##@
 - d. @@
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -259,6 +251,7 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 
 **Explanation:** Foo f2 = f → copy ctor: `#`. f3 = f2: operator= takes Foo by value, another copy ctor: `#`, prints `@`, returns *this (by value → another copy ctor: `#`). Total: ###@ or ##@# depending on RVO. Barem: c = ##@.
 
+</details>
 ---
 
 ### Question 14
@@ -269,6 +262,9 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - b. 456
 - c. 123
 - d. address of x
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: b) 456**
 
@@ -285,7 +281,6 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - b. 0
 - c. No
 - d. YesNo
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -306,7 +301,6 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - c. BaseDerived
 - d. runtime error
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -325,7 +319,6 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - b. compile error
 - c. A
 - d. C
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -346,7 +339,6 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - c. subtraction or explicit cast
 - d. subtraction or implicit cast
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -365,7 +357,6 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - b. AXB
 - c. XAYB
 - d. ABXY
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -386,7 +377,6 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - c. 100500
 - d. 200600
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -405,7 +395,6 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - b. never
 - c. yes, if certain conditions are met
 - d. only if in another schema
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -426,12 +415,12 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - c. no access to outer query data
 - d. only SELECT
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: b) A correlated subquery is executed once for each row processed by the outer query**
 
+</details>
 ---
 
 ### Question 23
@@ -442,6 +431,9 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - b. SUM
 - c. NVL
 - d. MAX
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: c) NVL**
 
@@ -458,7 +450,6 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - b. query fails
 - c. success, descending order
 - d. success, most recent order
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -479,12 +470,12 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - c. Insert data
 - d. Update a row
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: b) Add a constraint to an existing table**
 
+</details>
 ---
 
 ### Question 26
@@ -495,6 +486,9 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - b. won't compile
 - c. runs successfully
 - d. always raises exception
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: b) The block will not compile**
 
@@ -512,12 +506,12 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - c. same values
 - d. has values, not NULL
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: b) It ensures that all values in a column or group of columns are different, and it cannot be left empty**
 
+</details>
 ---
 
 ### Question 28
@@ -528,6 +522,9 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - b. all customers, name once, product per order, NULL for no orders
 - c. all customers, product list regardless
 - d. all customers, possibly listed more than once, no entries for those without orders
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: d) A list of all customers, with each customer's name possibly listed more than once, along with the product for each order they have placed, but no entries for customers who have not placed any orders**
 
@@ -545,12 +542,12 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - c. Never
 - d. only if doesn't modify DB
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: b) Yes**
 
+</details>
 ---
 
 ### Question 30
@@ -561,6 +558,9 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - b. no column 20
 - c. runs, displays no rows
 - d. runs, displays some values
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: c) The statement runs successfully and displays no rows**
 
@@ -580,7 +580,6 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 - c. 4
 - d. 127
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -594,16 +593,19 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 ### Question 2
 **Requirement:** `pa=a+1; p2a=a+2;` for `{'A','B','C'}`.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: a) *pa=B, *p2a=C**
 
+</details>
 ---
 
 ### Question 3
 **Requirement:** `char a[]={'A',0,'B',0,'C',0};` sizeof and strlen.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: b) array size = 6, string length = 1**
 
@@ -614,7 +616,6 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 
 ### Question 4
 **Requirement:** `char a[]={'A','B','C',0,'\0'};` cast to int*, back to char*, print.
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -629,7 +630,6 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 ### Question 5
 **Requirement:** `char a[]={'-','1','2',0,'.','3','4',0}; atof(a+4);` — reads from ".34".
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -642,7 +642,6 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 
 ### Question 6
 **Requirement:** `int a=65; pa=&a; pa=malloc(...); f(pa) sets pa[0]=10; print *pa; free(pa);`
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -657,7 +656,6 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 ### Question 7
 **Requirement:** `fct` recursively copies s2[idx] to s1[idx]. min_length=6, decrements to 0.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -670,7 +668,6 @@ f3 = f2;        // operator= -> copy of f2 into parameter -> prints #, then prin
 
 ### Question 8
 **Requirement:** `#define COMP(A,B) ((A) * 3 > B ? (A) : (B))` — B not parenthesized. `COMP(x+y, z+t)` with x=3,y=3,z=10,t=5.
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -689,7 +686,6 @@ Different interpretation: `COMP(x+y, z+t)`: A=x+y, B=z+t. `((x+y)*3 > z+t ? (x+y
 ### Question 9
 **Requirement:** `px[0]=3, px[1]=5; py=px+1; int m = x*(py-px) < y*(*py) ? *px : *py;` where x=2, y=1.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -703,7 +699,6 @@ Different interpretation: `COMP(x+y, z+t)`: A=x+y, B=z+t. `((x+y)*3 > z+t ? (x+y
 ### Question 10
 **Requirement:** Read Points.txt using strtok, print diff_x, diff_y.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -711,10 +706,14 @@ Different interpretation: `COMP(x+y, z+t)`: A=x+y, B=z+t. `((x+y)*3 > z+t ? (x+y
 
 Same as 2024 Q9.
 
+</details>
 ---
 
 ### Question 11
 **Requirement:** virtual int f() in A, non-virtual g(). B overrides both. A* x = new B(); x->f() x->g();
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: d) 32**
 
@@ -725,7 +724,6 @@ Same as 2024 Q9.
 
 ### Question 12
 **Requirement:** Class A (int, void f), Class B (int, virtual void f). sizeof(b) <= sizeof(a)?
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -740,7 +738,6 @@ Same as 2024 Q9.
 ### Question 13
 **Requirement:** class X abstract, Y:X override, Z:Y override. `y.function()?x=&z:x=&y; cout<<x->function();`
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -753,7 +750,6 @@ Same as 2024 Q9.
 
 ### Question 14
 **Requirement:** Foo f1, f2 (2 A's). Foo* pf = new Foo(); return 0; No delete pf.
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -768,7 +764,6 @@ Same as 2024 Q9.
 ### Question 15
 **Requirement:** Student.graduated=true; ps=&s; cout<<(*ps).graduated;
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -782,7 +777,6 @@ Same as 2024 Q9.
 ### Question 16
 **Requirement:** `char operator[]` (returns by value, not reference). `s[0]='C'` doesn't modify name.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -790,10 +784,14 @@ Same as 2024 Q9.
 
 **Actually:** Barem indicates c = compile error. Correct.
 
+</details>
 ---
 
 ### Question 17
 **Requirement:** Foo** v = new Foo*[1]; v[0] = new Foo(); cout << (*v)->x; Foo has bool x=false.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: d) 0**
 
@@ -805,23 +803,30 @@ Same as 2024 Q9.
 ### Question 18
 **Requirement:** `b*2;` — multiplication operator.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: a) multiplication operator or implicit cast**
 
+</details>
 ---
 
 ### Question 19
 **Requirement:** Why overload `<<` as friend.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: c) because the first operand is not the same type as the class**
 
+</details>
 ---
 
 ### Question 20
 **Requirement:** class C : B, A (multiple inheritance). C c; return 0; Only destructors.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: c) AB**
 
@@ -832,7 +837,6 @@ Same as 2024 Q9.
 
 ### Question 21
 **Requirement:** Function usable in PL/SQL assignment.
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -847,16 +851,19 @@ Same as 2024 Q9.
 ### Question 22
 **Requirement:** Implicit cursor statements.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: a) Are automatically opened and closed**
 
+</details>
 ---
 
 ### Question 23
 **Requirement:** `SELECT 'ab' column1 FROM employees WHERE 'a'='b';`
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: c) The statement runs successfully and displays no rows**
 
@@ -868,54 +875,78 @@ Same as 2024 Q9.
 ### Question 24
 **Requirement:** DECODE purpose.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: b) To perform conditional processing**
 
+</details>
 ---
 
 ### Question 25
 **Requirement:** CASE with no matching condition, no ELSE.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) NULL**
 
+</details>
 ---
 
 ### Question 26
 **Requirement:** SELECT with GROUP BY cust_last_name, ORDER BY count(Order_date) DESC.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: b) The query will run successfully and return the last names of customers in descending order of their total orders number**
 
+</details>
 ---
 
 ### Question 27
 **Requirement:** Can PL/SQL procedure call function?
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) Yes, always**
 
+</details>
 ---
 
 ### Question 28
 **Requirement:** SQL SELECT calling PL/SQL function.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) Yes, if certain conditions are met**
 
+</details>
 ---
 
 ### Question 29
 **Requirement:** ALTER TABLE uses.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) Drop a constraint from an existing table**
 
+</details>
 ---
 
 ### Question 30
 **Requirement:** FOREIGN KEY main purpose.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) To ensure data consistency and integrity across tables**
 
+</details>
 ---
 
 ## Exam 2022
@@ -929,6 +960,9 @@ Same as 2024 Q9.
 - c. compile error
 - d. "The first string. A string. "
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) "A string. The first string. "**
 
 **Explanation:** Overloaded + concatenates s3 with s1 content.
@@ -938,7 +972,6 @@ Same as 2024 Q9.
 
 ### Question 2
 **Requirement:** `void f(char &x, int& y)` with cast trickery.
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -953,16 +986,19 @@ Same as 2024 Q9.
 ### Question 3
 **Requirement:** `switch((char)(y==0))` with y=0. (char)(0==0) = (char)1 = 1. No case for 1, default runs.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: d) Nothing has been chosen**
 
+</details>
 ---
 
 ### Question 4
 **Requirement:** `int a=0x12340000; printf("%02X", (char)a + 1);` Little-Endian.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: c) 0x01**
 
@@ -973,7 +1009,6 @@ Same as 2024 Q9.
 
 ### Question 5
 **Requirement:** Student class with copy ctor, no operator=. `s3 = s4;`
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -988,30 +1023,41 @@ Same as 2024 Q9.
 ### Question 6
 **Requirement:** string name("John Smith"); name.length()=10. name+" Jr." length=14.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: a) John Smith (10) & John Smith Jr. (14)**
 
+</details>
 ---
 
 ### Question 7
 **Requirement:** Write 'A','B','C','D' bytes to test.txt.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: d) ABCD**
 
+</details>
 ---
 
 ### Question 8
 **Requirement:** `*(pa+1) = *pa + 1 + pa[2]` = 1+1+9=11. v[1]=11.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: d) v[1]=11, pa[2]=9**
 
+</details>
 ---
 
 ### Question 9
 **Requirement:** How many times delete called in Student example.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: b) 9 times**
 
@@ -1022,7 +1068,6 @@ Same as 2024 Q9.
 
 ### Question 10
 **Requirement:** Class B with `B(const A&)`. Various casts to A/B pointers.
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -1037,7 +1082,6 @@ Same as 2024 Q9.
 ### Question 11
 **Requirement:** sizeof(str) = 9 (with '\0'). sizeof(pstr) = 4 or 8 (pointer). strlen(str)=8. strlen(pstr+1)=7.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -1049,47 +1093,71 @@ Barem shows: b) 9 4 8 7 wait no. Barem answer sheet for 2022 shows Q11=a. Order 
 
 **Correct answer: a) 9 8 7 7** — actually option a says 9877 which matches 9,8,7,7 or 9,8,7,7. Answer: a.
 
+</details>
 ---
 
 ### Question 12
 **Requirement:** static counter n. Ctors increment, dtors decrement. Two objects + new + copy + assignment.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: d) 3 3**
 
+</details>
 ---
 
 ### Question 13
 **Requirement:** Correct string heap allocation.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) `new char[sizeof("Exam") + sizeof(vstr) + 1]`** *(barem)*
 
 **Explanation:** Need space for both strings + null.
 
+</details>
 ---
 
 ### Question 14
 **Requirement:** Complex class with static n and inner scope.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 65 72** *(barem)*
 
+</details>
 ---
 
 ### Question 15
 **Requirement:** Overloaded f1 with char/int* and char*/int.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: b) 52 61**
 
+</details>
 ---
 
 ### Question 16
 **Requirement:** Serialize Auto object to car01.txt.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: b) `type = 'BMW X5', weight=`** *(binary hex output)* Barem: b.
 
+</details>
 ---
 
 ### Question 17
 **Requirement:** Java BufferedReader loop until "quit".
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: b) Hello World Java/Kotlin!**
 
@@ -1100,7 +1168,6 @@ Barem shows: b) 9 4 8 7 wait no. Barem answer sheet for 2022 shows Q11=a. Order 
 
 ### Question 18
 **Requirement:** `class B implements A` where A is class, not interface.
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -1115,16 +1182,19 @@ Barem shows: b) 9 4 8 7 wait no. Barem answer sheet for 2022 shows Q11=a. Order 
 ### Question 19
 **Requirement:** Stream filter even numbers, multiply by 4, sum. [60,25,35,40] → 60,40 → 240+160=400.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: d) 400**
 
+</details>
 ---
 
 ### Question 20
 **Requirement:** PhoneNumber equals but no hashCode. Same object put and get.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: c) val = John**
 
@@ -1135,7 +1205,6 @@ Barem shows: b) 9 4 8 7 wait no. Barem answer sheet for 2022 shows Q11=a. Order 
 
 ### Question 21
 **Requirement:** Period p1, p2 same dates. p1=p2 (reference). equals & ==.
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -1150,7 +1219,6 @@ Barem shows: b) 9 4 8 7 wait no. Barem answer sheet for 2022 shows Q11=a. Order 
 ### Question 22
 **Requirement:** Concurrent write/read of serialized object.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -1164,30 +1232,41 @@ Barem shows: b) 9 4 8 7 wait no. Barem answer sheet for 2022 shows Q11=a. Order 
 ### Question 23
 **Requirement:** ArrayList operations with syntax errors (`marks.index0f`, `main` capitalized, `::` in for loop).
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: a) Nothing because of compilation error**
 
+</details>
 ---
 
 ### Question 24
 **Requirement:** ExecutorService with (field<<2)/2 = field*2. Field values 0,1,2,3 → 0,2,4,6.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: b) 0 2 4 6**
 
+</details>
 ---
 
 ### Question 25
 **Requirement:** Stream filter i>=6, map i*7, sum. [7,8] → 49+56=105.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: d) sum = 105**
 
+</details>
 ---
 
 ### Question 26
 **Requirement:** `marks.remove(21)` — 21 is int index, but list has size 3.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: d) Nothing because of runtime error**
 
@@ -1199,23 +1278,30 @@ Barem shows: b) 9 4 8 7 wait no. Barem answer sheet for 2022 shows Q11=a. Order 
 ### Question 27
 **Requirement:** Stream distinct filter price>15 map format.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: d) CAPPUCCINO...; CAPPUCCINO...; FLAT WHITE...; FLAT WHITE...;** *(no distinct because Coffee doesn't override equals)*
 
+</details>
 ---
 
 ### Question 28
 **Requirement:** Generic MyGen<Float>.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: b) 7834.5**
 
+</details>
 ---
 
 ### Question 29
 **Requirement:** `A a = new B()` — access `a.i`. Field access not polymorphic.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: a) 305**
 
@@ -1226,7 +1312,6 @@ Barem shows: b) 9 4 8 7 wait no. Barem answer sheet for 2022 shows Q11=a. Order 
 
 ### Question 30
 **Requirement:** `new File(".", null)` — throws NullPointerException, caught. file remains null.
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -1243,7 +1328,6 @@ Barem shows: b) 9 4 8 7 wait no. Barem answer sheet for 2022 shows Q11=a. Order 
 ### Question 1
 **Requirement:** `char v[]={97,99,102}; *(pa+1)=*(pa+1)-1;` → v[1]=98.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -1253,47 +1337,71 @@ Barem: **e) a=98, *pa=98** — but pa[2] shouldn't change. Re-reading: printf us
 
 **Correct answer: a) a=98, *pa=66**
 
+</details>
 ---
 
 ### Question 2
 **Requirement:** Write 0x12345678 byte-by-byte little-endian.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 78 56 34 12**
 
+</details>
 ---
 
 ### Question 3
 **Requirement:** f1 modifies through pointer y, f2 modifies through reference x.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 106 109** *(approximate barem)*
 
+</details>
 ---
 
 ### Question 4
 **Requirement:** f(char x, int*y): x local increment doesn't affect main. f(b, (int*)&a) — writes to &a as int.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: c) 65 1** *(barem a)*
 
+</details>
 ---
 
 ### Question 5
 **Requirement:** Pointer comparisons.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: c) Same/Different/Different/Same** *(approximate)*
 
+</details>
 ---
 
 ### Question 6
 **Requirement:** Valid heap allocation.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) `new char[strlen("Exam")]; str[strlen(vstr)]=0; strncpy...`** *(size might be short by 1)*
 
 Best based on barem: a.
 
+</details>
 ---
 
 ### Question 7
 **Requirement:** sizeof/strlen with FAR pointer.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: c) 8 9 4 4**
 
@@ -1304,7 +1412,6 @@ Best based on barem: a.
 
 ### Question 8
 **Requirement:** How many destructor calls in loop creating s3 3 times.
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -1319,7 +1426,6 @@ Best based on barem: a.
 ### Question 9
 **Requirement:** No operator= defined. Two assignments.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -1327,56 +1433,91 @@ Best based on barem: a.
 
 Actually option analysis: c) No call to overloaded operator= — since operator= not overloaded, default one used. But "how many times operator= is called for objects Student" — default counts too. Barem: a.
 
+</details>
 ---
 
 ### Question 10
 **Requirement:** When default constructor is called.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: c) An object is passed to a method by its reference** *(no, default ctor not called for references)*
 
 Actually the correct answer for default ctor: when object created without arguments. None of options exactly match. Barem: a (predefined values).
 
+</details>
 ---
 
 ### Question 11
 **Requirement:** Static counter n, MyClass instances.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 3 3** *(3 objects at first cout, still 3 at second because pmc=&mc2 doesn't destroy)*
 
+</details>
 ---
 
 ### Question 12
 **Requirement:** Complex class scenario with static n.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 71 69**
 
+</details>
 ---
 
 ### Question 13
 **Requirement:** class B has B(const A&) constructor. `ob_B1 = ob_A` calls operator=.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) Class B / Class B / Class A**
 
+</details>
 ---
 
 ### Question 14
 **Requirement:** String class with operator+ and =.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) "A string. Plus a new string. and the second one."**
 
+</details>
 ---
 
 ### Question 15
 **Requirement:** How many delete calls.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 10 times**
 
+</details>
 ---
 
 ### Java Q1: PhoneNumber → Url similar
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) val = First Url**
 
+</details>
+---
 ### Java Q2: Clone stack.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) ds1=[1,5,null,null,null], ds2=[1,5,null,null,null], s=9**
 
 **Explanation:** clone shares array reference; pop affects both.
@@ -1391,13 +1532,31 @@ Actually the correct answer for default ctor: when object created without argume
 
 Barem indicated: a) sum = 42 → a.
 
+</details>
+---
 ### Java Q4: FIPrime — `num/i==0` never true for reasonable nums.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) Is the number n = 301 prime? Yes = false**
 
+</details>
+---
 ### Java Q5: Exam objects with cloned Date.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) p1 equals p2 - false in p1 == p2 - false**
 
+</details>
+---
 ### Java Q6: MyGen with Double, Integer.parseInt on 2021.5.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) Nothing because of runtime error**
 
 **Explanation:** Integer.parseInt("2021.5") throws NumberFormatException.
@@ -1410,7 +1569,13 @@ Barem indicated: a) sum = 42 → a.
 
 **Correct answer: c) 991.5 2021.0 # 991.5 # 2018.7 -1 2022.0 # 991.5; 2018.7; 991.0;**
 
+</details>
+---
 ### Java Q8: XOR of bits.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 4**
 
 **Explanation:** value = 0 XOR 2 XOR 2 XOR 4 = 4.
@@ -1423,10 +1588,22 @@ Barem indicated: a) sum = 42 → a.
 
 **Correct answer: a) 225**
 
+</details>
+---
 ### Java Q10: BufferedReader loop until "strike".
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) strike**
 
+</details>
+---
 ### Java Q11: File with null name, empty directory.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) Exp01**
 
 **Explanation:** `new File(".", null)` may throw NPE → file stays null → file==null true.
@@ -1449,10 +1626,22 @@ Barem indicated: a) sum = 42 → a.
 
 **Correct answer: a) A B C A B C Copy**
 
+</details>
+---
 ### Java Q14: DataOutputStream writeUTF.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: b) `00 04 31 30 32 34 00 07 41 75 64 69 20 41 34 00 05 62 6C 61 63 6B`**
 
+</details>
+---
 ### Java Q15: HashMap iteration.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) ; Key=Alex...; Key=Andrew...**
 
 **Explanation:** Iterator loop skips first (already got K = it.next()), prints from second onward.
@@ -1464,7 +1653,6 @@ Barem indicated: a) sum = 42 → a.
 
 ### Question 1
 **Requirement:** `char a=97; *pa=*pa-1;` → a=96.
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -1479,150 +1667,291 @@ Barem indicated: a) sum = 42 → a.
 ### Question 2
 **Requirement:** Write 3 bytes of 0x12345678 little-endian.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: a) 78 56 34**
 
+</details>
 ---
 
 ### Question 3
 **Requirement:** f(char*x, int y): y++; *x += y; a=0x65, b=1. f(&a,b). y local=2. a=0x65+2=0x67. b unchanged.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 67 1**
 
+</details>
 ---
 
 ### Question 4
 **Requirement:** f(char*x, int&y): y++ modifies main. Similar.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 67 2**
 
+</details>
 ---
 
 ### Question 5
 **Requirement:** while(pattern[i++]!=0) — start i=8, out of bounds.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 0** *(undefined but likely 0 if pattern[8]='\0')*
 
+</details>
 ---
 
 ### Question 6
 **Requirement:** Correct heap allocation.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) `new char[strlen("Exam")+1]; strcpy(str, "Exam");`**
 
+</details>
 ---
 
 ### Question 7
 **Requirement:** strlen vs sizeof for "A string".
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 8 9**
 
+</details>
 ---
 
 ### Question 8
 **Requirement:** Destructor calls in scope.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 5 times**
 
+</details>
 ---
 
 ### Question 9
 **Requirement:** Operator= calls.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 2 times**
 
+</details>
 ---
 
 ### Question 10
 **Requirement:** When copy ctor is called.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) Building an object taking over another one with the same type, passing an object by value as input parameter to a function/method, returning an object by value as result from a function/method**
 
+</details>
 ---
 
 ### Question 11
 **Requirement:** MyClass counter with new + local + delete.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 3**
 
+</details>
 ---
 
 ### Question 12
 **Requirement:** Access private via friend/nonmember.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) compilation error**
 
+</details>
 ---
 
 ### Question 13
 **Requirement:** Class B with conversion operator A.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) Class B / Class A**
 
+</details>
 ---
 
 ### Question 14
 **Requirement:** Correct String assignment.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) s3 = s1 + s2**
 
+</details>
 ---
 
 ### Question 15
 **Requirement:** Delete calls.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 6 times**
 
+</details>
 ---
 
 ### Java Q1: PhoneNumber HashMap.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) val1=Jenny, val2=Mark**
 
+</details>
+---
 ### Java Q2: Cloning stack.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) st1=[1,5,null,null,null], st2=[1,5,null,null,null]**
 
+</details>
+---
 ### Java Q3: Stream filter i>=2, map*3, sum. [2,11] → 6+33=39.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) sum = 39**
 
+</details>
+---
 ### Java Q4: Factorial functional interface.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) Factorial is 24**
 
+</details>
+---
 ### Java Q5: Period equals with cloned Date.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) p1 equals p2 - true in p1 == p2 - false**
 
+</details>
+---
 ### Java Q6: MyGen with generic method setting String.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 2034.5**
 
+</details>
+---
 ### Java Q7: ArrayList operations.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 34 32 # 34 30 32 # 32 -1 32 # 34 30**
 
+</details>
+---
 ### Java Q8: List.remove(73) — treated as int, out of bounds.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 91 73 21** *(catch swallows exception)*
 
+</details>
+---
 ### Java Q9: Stream filter %2==0, map*2, sum. [10,40] → 20+80=100.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 100**
 
+</details>
+---
 ### Java Q10: BufferedReader loop until "strong".
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) Hello Test**
 
+</details>
+---
 ### Java Q11: File(".", null) — throws NPE.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) runtime error**
 
+</details>
+---
 ### Java Q12: writeObject serializing string.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) binary output with Car{color='gri', type='BMW X5', weight=10}**
 
+</details>
+---
 ### Java Q13: DataOutputStream writeInt.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 00 00 04 00 00 06 42 4D 57 20 58 35 00 05 62 6C 61 63 6B**
 
+</details>
+---
 ### Java Q14: `A a = new B(); a.i` — field access not polymorphic.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 105**
 
+</details>
+---
 ### Java Q15: Chain constructor calls.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) # Class A Constructor# Class B Constructor# Class C Constructor**
 
+</details>
 ---
 
 ## Exam 2019
@@ -1636,6 +1965,9 @@ Barem indicated: a) sum = 42 → a.
 - c) public class A { };
 - d) static class B { };
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: c) public class A { };**
 
 **Explanation:** `public` is not a C++ class modifier (Java syntax).
@@ -1646,60 +1978,87 @@ Barem indicated: a) sum = 42 → a.
 ### Question 2
 **Requirement:** Utils::method with break; on first iteration — returns c=0. Print from i=0.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: c) 00, 00, 01, 03, 05, 00, 00, 00,**
 
+</details>
 ---
 
 ### Question 3
 **Requirement:** Box class with two constructors; operator to overload for `==`.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: b) ==**
 
+</details>
 ---
 
 ### Question 4
 **Requirement:** xyz(int p1, int*p2). Global a=10.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 10 11 12 13 13 4** *(barem may differ; standard: a)*
 
+</details>
 ---
 
 ### Question 5
 **Requirement:** Nested for loops with side effects.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: d) none of these**
 
+</details>
 ---
 
 ### Question 6
 **Requirement:** Print inner array elements.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 54321** *(barem indicates a? actually b)*
 
 Analysis: for i<n/2 (i.e., i=0,1) outer, inner j<n prints v[j]. Prints 12345 twice → "1234512345". None match. Barem: b) 1 2 3 4 5.
 
+</details>
 ---
 
 ### Question 7
 **Requirement:** Nested while with ++.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: b) 4**
 
+</details>
 ---
 
 ### Question 8
 **Requirement:** Java DataOutputStream/DataInputStream reading/writing frequency+values pairs.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) Value 7 - 12.00 ... Value 11 - 24.00 frequency**
 
+</details>
 ---
 
 ### Question 9
 **Requirement:** Not implementation of List.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: d) SessionList**
 
@@ -1710,7 +2069,6 @@ Analysis: for i<n/2 (i.e., i=0,1) outer, inner j<n prints v[j]. Prints 12345 twi
 
 ### Question 10
 **Requirement:** How many times A's constructor called via static field.
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -1725,23 +2083,30 @@ Analysis: for i<n/2 (i.e., i=0,1) outer, inner j<n prints v[j]. Prints 12345 twi
 ### Question 11
 **Requirement:** rect class with area method conflict.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: c) None of the mentioned**
 
+</details>
 ---
 
 ### Question 12
 **Requirement:** Box operator< comparing capacities.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: b) B2's capacity is smaller**
 
+</details>
 ---
 
 ### Question 13
 **Requirement:** Interface with virtual method = 0, two implementations. Object of each calls Display().
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: a) 55**
 
@@ -1752,7 +2117,6 @@ Analysis: for i<n/2 (i.e., i=0,1) outer, inner j<n prints v[j]. Prints 12345 twi
 
 ### Question 14
 **Requirement:** Polymorphism print.
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -1767,7 +2131,6 @@ Analysis: for i<n/2 (i.e., i=0,1) outer, inner j<n prints v[j]. Prints 12345 twi
 ### Question 15
 **Requirement:** Static block with local `int a=10;` shadows static.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -1780,7 +2143,6 @@ Analysis: for i<n/2 (i.e., i=0,1) outer, inner j<n prints v[j]. Prints 12345 twi
 
 ### Question 16
 **Requirement:** Singleton pattern.
-
 
 <details>
 <summary>🔍 Answer & explanation</summary>
@@ -1795,41 +2157,56 @@ Analysis: for i<n/2 (i.e., i=0,1) outer, inner j<n prints v[j]. Prints 12345 twi
 ### Question 17
 **Requirement:** for(j=i==10; j<=10; j++) — j=1 initially.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: c) 10 times** *(barem may differ)*
 
+</details>
 ---
 
 ### Question 18
 **Requirement:** Polymorphism with base and derived pointers.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: b) outputs "a student"** *(barem c)*
 
 Analysis: Show() not virtual. p->Show() calls Person::Show() = "a person". Barem: c.
 
+</details>
 ---
 
 ### Question 19
 **Requirement:** swap with references.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: c) In swap 5 10 In main 10 5** *(barem a)*
 
 Analysis: swap prints after modification: a=b=10, b=temp=5. Prints "In swap 10 5". Main: "In main 10 5". Concatenated: "In swap 10 5 In main 10 5". Barem: a? Options don't perfectly match. Barem indicates a.
 
+</details>
 ---
 
 ### Question 20
 **Requirement:** Trim leading/trailing zeros in array.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: c) startOff=2, stopOff=6, newLength=4 / 01,02,00,04 / 01,02,00,04**
 
+</details>
 ---
 
 ### Question 21
 **Requirement:** Java access modifiers.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: d) A private member of a class cannot be accessed by the methods of the same class**
 
@@ -1841,7 +2218,6 @@ Analysis: swap prints after modification: a=b=10, b=temp=5. Prints "In swap 10 5
 ### Question 22
 **Requirement:** Class Y : public X — private members not accessible.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
@@ -1849,28 +2225,40 @@ Analysis: swap prints after modification: a=b=10, b=temp=5. Prints "In swap 10 5
 
 Analysis: Y calls y.getm() and y.getn(). If m accessible via public getm() inherited from X → returns m (uninitialized or 10). Barem: b) 10 100.
 
+</details>
 ---
 
 ### Question 23
 **Requirement:** for(i=20, i=10; i<=20; i++) prints 10..20.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) 11 times** *(from 10 to 20 inclusive)*
 
 Actually option says "Shows 11" — 11 numbers printed. Barem: a.
 
+</details>
 ---
 
 ### Question 24
 **Requirement:** static int i=10 declaration in method.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: d) it displays 10** *(barem a? need to check)*
 
 Barem indicates a. Static i initialized to 10, returned. Prints 10.
 
+</details>
 ---
 
 ### Question 25
 **Requirement:** Not implementation of Set.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: a) SortedSet**
 
@@ -1882,23 +2270,30 @@ Barem indicates a. Static i initialized to 10, returned. Prints 10.
 ### Question 26
 **Requirement:** abc(int a) prints ++a.
 
-
 <details>
 <summary>🔍 Answer & explanation</summary>
 
 **Correct answer: c) 14 14 14** *(barem indicates c)*
 
+</details>
 ---
 
 ### Question 27
 **Requirement:** When constructor is executed.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: c) an object is created**
 
+</details>
 ---
 
 ### Question 28
 **Requirement:** Static counter starting from 1, 3 objects.
+
+<details>
+<summary>🔍 Answer & explanation</summary>
 
 **Correct answer: b) outputs "Person #2"**
 
@@ -1910,13 +2305,21 @@ Barem indicates a. Static i initialized to 10, returned. Prints 10.
 ### Question 29
 **Requirement:** Java abstract classes.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: a) abstract classes can contain non-abstract methods and instance variables**
 
+</details>
 ---
 
 ### Question 30
 **Requirement:** Virtual methods in Java.
 
+<details>
+<summary>🔍 Answer & explanation</summary>
+
 **Correct answer: d) all non-static methods are virtual by default and design**
 
+</details>
 ---
